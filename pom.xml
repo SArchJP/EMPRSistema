@@ -34,7 +34,6 @@
     </properties>
     
     <dependencies>
-
         <!-- cglib -->
         <dependency>
             <groupId>cglib</groupId>

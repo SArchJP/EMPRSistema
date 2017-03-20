@@ -5,6 +5,8 @@ import javax.persistence.PersistenceContext;
 import lt.vtvpmc.ems.pw.entities.Student;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
+
 public class NewStudentBean {
     
     @PersistenceContext
@@ -12,10 +14,11 @@ public class NewStudentBean {
     
     private String studentFirstName;
     private String studentLastName;
+    private Date studentBirthDate;
 
     @Transactional
     public String save() {
-        Student student = new Student(studentFirstName, studentLastName);
+        Student student = new Student(studentFirstName, studentLastName, studentBirthDate);
         entityManager.persist(student);
         return "main.xhtml";
     }
@@ -36,5 +39,19 @@ public class NewStudentBean {
         this.studentLastName = studentLastName;
     }
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
+
+    public Date getStudentBirthDate() {
+        return studentBirthDate;
+    }
+
+    public void setStudentBirthDate(Date studentBirthDate) {
+        this.studentBirthDate = studentBirthDate;
+    }
 }
