@@ -11,7 +11,20 @@
 	
 
     <bean id="newStudentBean" class="lt.vtvpmc.ems.pw.ui.NewStudentBean" scope="request"/>
-    
+
     <bean id="studentListBean" class="lt.vtvpmc.ems.pw.ui.StudentListBean" scope="request"/>
-    
+
+
+    <bean id="studentPageData" class="lt.vtvpmc.ems.pw.ui.controllers.StudentPageData"
+          scope="session" init-method="init"/>
+
+    <bean id="studentDaoImpl" class="lt.vtvpmc.ems.pw.entities.repositories.jpa.StudentDaOImpl" scope="singleton">
+            <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="studentPageBean" class="lt.vtvpmc.ems.pw.ui.StudentPageBean" scope="request">
+        <property name="studentPageData" ref="studentPageData"/>
+
+    </bean>
+
 </beans>
