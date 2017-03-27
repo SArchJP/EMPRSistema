@@ -26,6 +26,7 @@
         <property name="password" value=""/>
     </bean>
 
+    <!--Originalas entitymanager-->
     <bean id="entityManagerFactory"
           class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
         <property name="persistenceXmlLocation" value="classpath:persistence.xml" />
@@ -34,7 +35,14 @@
         <property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
         <property name="jpaDialect" ref="jpaDialect" />
     </bean>
- 
+
+    <!--Kaip pavyzdziuose entity manager-->
+    <!--<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">-->
+        <!--<property name="persistenceUnitName" value="persistence-unit"/>-->
+        <!--<property name="dataSource" ref="dataSource"/>-->
+    <!--</bean>-->
+
+
     <bean id="jpaVendorAdapter"
       class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
         <property name="database" value="H2" />

@@ -23,5 +23,12 @@ public class StudentListBean {
     public void removeStudent(Student student) {
         entityManager.remove(entityManager.merge(student));
     }
-    
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager entityManager) {
+        this.entityManager = entityManager;
+    }
 }
