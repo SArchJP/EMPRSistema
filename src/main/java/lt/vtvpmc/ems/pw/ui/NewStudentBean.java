@@ -18,6 +18,8 @@ public class NewStudentBean {
 
     @Transactional
     public String save() {
+
+
         Student student = new Student(studentFirstName, studentLastName, studentBirthDate);
         entityManager.persist(student);
         return "main.xhtml";

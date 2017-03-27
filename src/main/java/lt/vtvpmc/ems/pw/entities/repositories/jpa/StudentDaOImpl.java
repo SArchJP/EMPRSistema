@@ -6,6 +6,7 @@ import org.springframework.orm.jpa.LocalEntityManagerFactoryBean;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -48,7 +49,7 @@ public class StudentDaOImpl implements StudentRepository {
         return null;
     }
 
-    public Student find(String firstName, String lastName) {
+    public Student find(String firstName, String lastName, Date birthDate) {
         return null;
     }
 

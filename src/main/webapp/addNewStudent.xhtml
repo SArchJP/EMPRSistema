@@ -8,29 +8,28 @@
 </h:head>
 
 <h:body>
-    <h:form id="newCustomerForm">
+    <h:form id="newStudentForm">
         <h3>Add New Student</h3>
         <h:panelGrid columns="3">
-            <p:outputLabel for="clientName">Vardas:</p:outputLabel>
-            <h:inputText id="clientName" value="#{newStudentBean.studentFirstName}" required="true"/>
-            <p:message for="clientName"/>
+            <p:outputLabel for="studentName">Vardas:</p:outputLabel>
+            <h:inputText id="studentName" value="#{newStudentBean.studentFirstName}" required="true"/>
+            <p:message for="studentName"/>
 
-            <p:outputLabel for="clientSurname">Pavardė:</p:outputLabel>
-            <h:inputText id="clientSurname" value="#{newStudentBean.studentLastName}" required="true"/>
-            <p:message for="clientSurname"/>
+            <p:outputLabel for="studentLastName">Pavardė:</p:outputLabel>
+            <h:inputText id="studentLastName" value="#{newStudentBean.studentLastName}" required="true"/>
+            <p:message for="studentLastName"/>
 
-            <p:outputLabel for="clientBirthDate">Gimimo data:</p:outputLabel>
+            <p:outputLabel for="studentBirthDate">Gimimo data:</p:outputLabel>
             <p:calendar
-                    id="clientBirthDate"
+                    id="studentBirthDate"
                     value="#{newStudentBean.studentBirthDate}"
                     showOn="button"
-                    required="true"
                     pattern="yyyy-MM-dd"
-            >
-                <f:validator validatorId="default.BirthDateValidator"/>
+                    required="true"
+                    past="true">
             </p:calendar>
 
-            <p:message for="clientBirthDate"/>
+            <p:message for="studentBirthDate"/>
 
         </h:panelGrid>
         <h:commandButton action="#{newStudentBean.save()}" value="Add"/>
