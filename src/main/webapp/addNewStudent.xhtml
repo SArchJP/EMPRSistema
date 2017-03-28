@@ -10,27 +10,40 @@
 <h:body>
     <h:form id="newCustomerForm">
         <h3>Add New Student</h3>
-        <h:panelGrid columns="3">
+        <h:panelGrid columns="1" layout="grid">
+
+            <!--Moksleivio vardas-->
             <p:outputLabel for="clientName">Vardas:</p:outputLabel>
-            <h:inputText id="clientName" value="#{newStudentBean.studentFirstName}" required="true"/>
+            <h:inputText id="clientName" value="#{newStudentBean.studentFirstName}" required="true"
+                         requiredMessage="Klaida! Laukas yra privalomas"/>
             <p:message for="clientName"/>
 
+            <!--Moksleivio pavarde-->
             <p:outputLabel for="clientSurname">Pavardė:</p:outputLabel>
-            <h:inputText id="clientSurname" value="#{newStudentBean.studentLastName}" required="true"/>
+            <h:inputText id="clientSurname" value="#{newStudentBean.studentLastName}" required="true"
+                         requiredMessage="Klaida! Laukas yra privalomas"/>
             <p:message for="clientSurname"/>
 
+            <!--Moksleivio gimimo data-->
             <p:outputLabel for="clientBirthDate">Gimimo data:</p:outputLabel>
             <p:calendar
                     id="clientBirthDate"
                     value="#{newStudentBean.studentBirthDate}"
                     showOn="button"
                     required="true"
+                    requiredMessage="Klaida! Laukas yra privalomas"
                     pattern="yyyy-MM-dd"
             >
                 <f:validator validatorId="default.BirthDateValidator"/>
             </p:calendar>
-
             <p:message for="clientBirthDate"/>
+
+            <!--Moksleivio adresas-->
+            Adresas: <h:inputText id="clientAdress" value="0" />
+
+            <!--Moksleivio adresas-->
+            Adresas: <h:inputText id="clientAdresss" value="0" />
+
 
         </h:panelGrid>
         <h:commandButton action="#{newStudentBean.save()}" value="Add"/>
