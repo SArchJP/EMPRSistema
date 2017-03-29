@@ -11,10 +11,13 @@ public class Student implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @NotNull
     private String firstName;
+
     @NotNull
     private String lastName;
+
     @Temporal(TemporalType.DATE)
     private Date birthDate;
 
