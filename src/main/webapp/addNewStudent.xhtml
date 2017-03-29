@@ -4,12 +4,12 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Add New Student</title>
+    <title>Įtraukti naują moksleivį</title>
 </h:head>
 
 <h:body>
     <h:form id="newStudentForm">
-        <h3>Add New Student</h3>
+        <h3>Įtraukti naują moksleivį</h3>
 
         <h:panelGrid columns="1" layout="grid">
 
@@ -66,12 +66,14 @@
                     id="yearFinished"
                     value="#{newStudentBean.yearFinished}"
                     showOn="button"
-                    pattern="yyyy-MM-dd"
-                    past="true"
-                    validatorMessage="Baigimo metai privalomi">
+                    requiredMessage="Klaida! Laukas yra privalomas"
+                    pattern="yyyy-MM-dd">
                 <f:validateRequired/>
             </p:calendar>
             <p:message for="yearFinished"/>
+
+            <h:outputLabel>Nutraukė studijas: </h:outputLabel>
+            <p:selectBooleanCheckbox value="#{newStudentBean.leftStudies}" />
 
             <!--Moksleivio adresas-->
             Adresas: <h:inputText id="clientAdress" value="0" />

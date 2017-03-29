@@ -24,12 +24,14 @@ public class NewStudentBean {
     private String institution;
     private String institutionType;
     private Date yearFinished;
+    private Boolean leftStudies;
+
 
     @Transactional
     public String save() {
-        LearningNotFirstTime learningNotFirstTimeClass = new LearningNotFirstTime(gainedSpecialty,institution, institutionType, yearFinished );
+        LearningNotFirstTime learningNotFirstTimeClass = new LearningNotFirstTime(gainedSpecialty, institution, institutionType, yearFinished);
         entityManager.persist(learningNotFirstTimeClass);
-        Student student = new Student(studentFirstName, studentLastName, studentBirthDate);
+        Student student = new Student(studentFirstName, studentLastName, studentBirthDate, leftStudies);
         student.setLearningNotFirstTime(learningNotFirstTimeClass);
         entityManager.persist(student);
         return "main.xhtml";
@@ -105,5 +107,13 @@ public class NewStudentBean {
 
     public void setYearFinished(Date yearFinished) {
         this.yearFinished = yearFinished;
+    }
+
+    public Boolean getLeftStudies() {
+        return leftStudies;
+    }
+
+    public void setLeftStudies(Boolean leftStudies) {
+        this.leftStudies = leftStudies;
     }
 }

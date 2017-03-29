@@ -20,20 +20,24 @@ public class Student implements Serializable {
 
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+
+    private Boolean leftStudies;
     @OneToOne
     private LearningNotFirstTime learningNotFirstTime;
 
-    public Student(String firstName, String lastName, Date birthDate,LearningNotFirstTime learningNotFirstTime) {
+    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, LearningNotFirstTime learningNotFirstTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.leftStudies = leftStudies;
         this.learningNotFirstTime = learningNotFirstTime;
     }
 
-    public Student(String firstName, String lastName, Date birthDate) {
+    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
+        this.leftStudies = leftStudies;
     }
 
     public Student() {
@@ -77,5 +81,13 @@ public class Student implements Serializable {
 
     public void setLearningNotFirstTime(LearningNotFirstTime learningNotFirstTime) {
         this.learningNotFirstTime = learningNotFirstTime;
+    }
+
+    public Boolean getLeftStudies() {
+        return leftStudies;
+    }
+
+    public void setLeftStudies(Boolean leftStudies) {
+        this.leftStudies = leftStudies;
     }
 }
