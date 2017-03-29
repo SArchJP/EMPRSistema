@@ -2,6 +2,7 @@
 <persistence>
    <persistence-unit name="persistence-unit">
        <class>lt.vtvpmc.ems.pw.entities.Student</class>
+       <class>lt.vtvpmc.ems.pw.entities.LearningNotFirstTime</class>
        <properties>
            <property name="hibernate.hbm2ddl.auto" value="update"/>
        </properties>

@@ -4,12 +4,12 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
-    <title>Add New Student</title>
+    <title>Įtraukti naują moksleivį</title>
 </h:head>
 
 <h:body>
     <h:form id="newStudentForm">
-        <h3>Add New Student</h3>
+        <h3>Įtraukti naują moksleivį</h3>
 
         <h:panelGrid columns="1" layout="grid">
 
@@ -34,20 +34,54 @@
                     required="true"
                     requiredMessage="Klaida! Laukas yra privalomas"
                     pattern="yyyy-MM-dd"
-                    past="true"
+                    past="true">
                     
             </p:calendar>
 
             <p:message for="studentBirthDate"/>
 
+
+            <!--<h:selectManyCheckbox value="#{newStudentBean.learningNotFirstTime}">-->
+            <!--<f:selectItem itemValue="Taip" itemLabel="Taip"/>-->
+            <!---->
+            <!--</h:selectManyCheckbox>-->
+
+            <p:outputLabel for="gainedSpecialty">Įgyta specialybė:</p:outputLabel>
+            <h:inputText id="gainedSpecialty" value="#{newStudentBean.gainedSpecialty}">
+            </h:inputText>
+            <p:message for="gainedSpecialty"/>
+
+            <p:outputLabel for="institution">Institucijos pavadinimas:</p:outputLabel>
+            <h:inputText id="institution" value="#{newStudentBean.institution}">
+            </h:inputText>
+            <p:message for="institution"/>
+
+            <p:outputLabel for="institutionType">Institucijos tipas:</p:outputLabel>
+            <h:inputText id="institutionType" value="#{newStudentBean.institutionType}">
+            </h:inputText>
+            <p:message for="institutionType"/>
+
+            <p:outputLabel for="yearFinished">Baigimo metai:</p:outputLabel>
+            <p:calendar
+                    id="yearFinished"
+                    value="#{newStudentBean.yearFinished}"
+                    showOn="button"
+                    requiredMessage="Klaida! Laukas yra privalomas"
+                    pattern="yyyy-MM-dd">
+                <f:validateRequired/>
+            </p:calendar>
+            <p:message for="yearFinished"/>
+
+            <h:outputLabel>Nutraukė studijas: </h:outputLabel>
+            <p:selectBooleanCheckbox value="#{newStudentBean.leftStudies}" />
+
             <!--Moksleivio adresas-->
             Adresas: <h:inputText id="clientAdress" value="0" />
 
-            <!--Moksleivio adresas-->
-            Adresas: <h:inputText id="clientAdresss" value="0" />
-
 
         </h:panelGrid>
+
+
         <h:commandButton action="#{newStudentBean.save()}" value="Add"/>
     </h:form>
 </h:body>
