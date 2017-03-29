@@ -8,35 +8,37 @@
 </h:head>
 
 <h:body>
-    <h:form id="newCustomerForm">
+    <h:form id="newStudentForm">
         <h3>Add New Student</h3>
+
         <h:panelGrid columns="1" layout="grid">
 
             <!--Moksleivio vardas-->
-            <p:outputLabel for="clientName">Vardas:</p:outputLabel>
-            <h:inputText id="clientName" value="#{newStudentBean.studentFirstName}" required="true"
+            <p:outputLabel for="studentName">Vardas:</p:outputLabel>
+            <h:inputText id="studentName" value="#{newStudentBean.studentFirstName}" required="true"
                          requiredMessage="Klaida! Laukas yra privalomas"/>
-            <p:message for="clientName"/>
+            <p:message for="studentName"/>
 
             <!--Moksleivio pavarde-->
-            <p:outputLabel for="clientSurname">Pavardė:</p:outputLabel>
-            <h:inputText id="clientSurname" value="#{newStudentBean.studentLastName}" required="true"
+            <p:outputLabel for="studentLastName">Pavardė:</p:outputLabel>
+            <h:inputText id="studentLastName" value="#{newStudentBean.studentLastName}" required="true"
                          requiredMessage="Klaida! Laukas yra privalomas"/>
-            <p:message for="clientSurname"/>
+            <p:message for="studentLastName"/>
 
             <!--Moksleivio gimimo data-->
-            <p:outputLabel for="clientBirthDate">Gimimo data:</p:outputLabel>
+            <p:outputLabel for="studentBirthDate">Gimimo data:</p:outputLabel>
             <p:calendar
-                    id="clientBirthDate"
+                    id="studentBirthDate"
                     value="#{newStudentBean.studentBirthDate}"
                     showOn="button"
                     required="true"
                     requiredMessage="Klaida! Laukas yra privalomas"
                     pattern="yyyy-MM-dd"
-            >
-                <f:validator validatorId="default.BirthDateValidator"/>
+                    past="true"
+                    
             </p:calendar>
-            <p:message for="clientBirthDate"/>
+
+            <p:message for="studentBirthDate"/>
 
             <!--Moksleivio adresas-->
             Adresas: <h:inputText id="clientAdress" value="0" />

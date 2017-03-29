@@ -2,6 +2,7 @@ package lt.vtvpmc.ems.pw.entities.repositories;
 
 import lt.vtvpmc.ems.pw.entities.Student;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,6 +16,6 @@ public interface StudentRepository {
 
     public List<Student> findAll();
 
-    public Student find(String firstName, String lastName);
+    public Student find(String firstName, String lastName, Date birthDate);
 
 }
