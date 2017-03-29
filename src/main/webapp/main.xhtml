@@ -10,7 +10,23 @@
 </h:head>
 
 <h:body>
+
     <h:form id="tableActionForm">
+        <!--Pridėti naują moksleivį-->
+        <h:form id="actionForm">
+            <h:commandButton id="addNewStudentBtn" action="addNewStudent" value="Pridėti naują moksleivį"/>
+        </h:form>
+        <br/>
+
+        <!--Moksleivio paieška-->
+        <h:form>
+            <h:inputText id="theSearchName" value="0" />
+            <h:commandButton value="Rasti pagal pavarde" action="list-students?faces-redirect=true" styleClass="add-student-button" />
+        </h:form>
+        <br/>
+
+
+        <!--Lentelė su Vardu, Pavarde, Data ir Veiksmais -->
         <p:dataTable value="#{studentListBean.studentList}" var="student">
             <p:column>
                 <f:facet name="header">
@@ -43,10 +59,6 @@
             </p:column>
 
         </p:dataTable>
-    </h:form>
-
-    <h:form id="actionForm">
-        <h:commandButton id="addNewStudentBtn" action="addNewStudent" value="Add New Student"/>
     </h:form>
 
 </h:body>
