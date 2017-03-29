@@ -12,11 +12,17 @@
         <h3>Add New Student</h3>
         <h:panelGrid columns="3">
             <p:outputLabel for="studentName">Vardas:</p:outputLabel>
-            <h:inputText id="studentName" value="#{newStudentBean.studentFirstName}" required="true"/>
+            <h:inputText id="studentName" value="#{newStudentBean.studentFirstName}"
+                         validatorMessage="Vardas yra privalomas">
+                <f:validateRequired/>
+            </h:inputText>
             <p:message for="studentName"/>
 
             <p:outputLabel for="studentLastName">Pavardė:</p:outputLabel>
-            <h:inputText id="studentLastName" value="#{newStudentBean.studentLastName}" required="true"/>
+            <h:inputText id="studentLastName" value="#{newStudentBean.studentLastName}"
+                         validatorMessage="Pavardė yra privaloma">
+                <f:validateRequired/>
+            </h:inputText>
             <p:message for="studentLastName"/>
 
             <p:outputLabel for="studentBirthDate">Gimimo data:</p:outputLabel>
@@ -25,8 +31,9 @@
                     value="#{newStudentBean.studentBirthDate}"
                     showOn="button"
                     pattern="yyyy-MM-dd"
-                    required="true"
-                    past="true">
+                    past="true"
+                    validatorMessage="Gimimo data yra privaloma">
+                <f:validateRequired/>
             </p:calendar>
 
             <p:message for="studentBirthDate"/>
