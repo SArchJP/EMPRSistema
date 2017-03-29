@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 public class Student implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotNull
     private String firstName;
@@ -17,6 +17,15 @@ public class Student implements Serializable {
     private String lastName;
     @Temporal(TemporalType.DATE)
     private Date birthDate;
+    @OneToOne
+    private LearningNotFirstTime learningNotFirstTime;
+
+    public Student(String firstName, String lastName, Date birthDate,LearningNotFirstTime learningNotFirstTime) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.birthDate = birthDate;
+        this.learningNotFirstTime = learningNotFirstTime;
+    }
 
     public Student(String firstName, String lastName, Date birthDate) {
         this.firstName = firstName;
@@ -57,5 +66,13 @@ public class Student implements Serializable {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public LearningNotFirstTime getLearningNotFirstTime() {
+        return learningNotFirstTime;
+    }
+
+    public void setLearningNotFirstTime(LearningNotFirstTime learningNotFirstTime) {
+        this.learningNotFirstTime = learningNotFirstTime;
     }
 }
