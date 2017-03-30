@@ -9,7 +9,6 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Component
 public class AdditionalInformation implements Serializable {
 
     @Id
@@ -18,7 +17,7 @@ public class AdditionalInformation implements Serializable {
 
     private String address;
     private String municipal;
-    private String phone;
+    private long phone;
     private String email;
     private String education;
     private String nameOfFinishedSchool;
@@ -26,50 +25,22 @@ public class AdditionalInformation implements Serializable {
     private Date yearFinished;
     private String maritalStatus;
 
-    // Drop down lists for municipal, education, maritalStatus
-    @Transient List<String> municipalOption;
-    @Transient List<String> educationOptions;
-    @Transient List<String> martialStatusOption;
-
-
     // Create no-arg constructor
 
     public AdditionalInformation() {
-        municipalOption = new ArrayList<String>();
-        municipalOption.add("Alytaus m.");
-        municipalOption.add("Alytaus raj.");
-        municipalOption.add("Kauno m.");
-        municipalOption.add("Kauno raj.");
-        municipalOption.add("Klaipėdos m.");
-        municipalOption.add("Klaipėdos raj.");
-        municipalOption.add("Marijampolės m.");
-        municipalOption.add("Panevėžio m.");
-        municipalOption.add("Panevėžio raj.");
-        municipalOption.add("Utenos raj.");
-        municipalOption.add("Visagino m.");
-        municipalOption.add("Vilniaus m.");
-        municipalOption.add("Vilniaus raj.");
-
-        educationOptions = new ArrayList<String>();
-        educationOptions.add("Aukštasis išsilavinimas");
-        educationOptions.add("Aukštesnysis išsilavinimas");
-        educationOptions.add("Specialusis vidurinis išsilavinimas");
-        educationOptions.add("Vidurinis išsilavinimas ");
-        educationOptions.add("Pagrindinis išsilavinimas");
-        educationOptions.add("Pradinis išsilavinimas");
-        educationOptions.add("Nereglamentuojamas");
-        educationOptions.add("Aukštasis universitetinis išsilavinimas");
-        educationOptions.add("Aukštasis koleginis išsilavinimas");
-
-        martialStatusOption = new ArrayList<String>();
-        martialStatusOption.add("vedęs/ištekėjusi");
-        martialStatusOption.add("nevedęs/neištekėjusi");
-        martialStatusOption.add("našlaitis(-ė)");
-
-
-
     }
 
+    //    Arg true constructor
+    public AdditionalInformation(String address, String municipal, long phone, String email, String education, String nameOfFinishedSchool, Date yearFinished, String maritalStatus) {
+        this.address = address;
+        this.municipal = municipal;
+        this.phone = phone;
+        this.email = email;
+        this.education = education;
+        this.nameOfFinishedSchool = nameOfFinishedSchool;
+        this.yearFinished = yearFinished;
+        this.maritalStatus = maritalStatus;
+    }
 
     //    Generate getters and setters
 
@@ -97,11 +68,11 @@ public class AdditionalInformation implements Serializable {
         this.municipal = municipal;
     }
 
-    public String getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(String phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
@@ -145,15 +116,15 @@ public class AdditionalInformation implements Serializable {
         this.maritalStatus = maritalStatus;
     }
 
-    public List<String> getMunicipalOption() {
-        return municipalOption;
-    }
-
-    public List<String> getEducationOptions() {
-        return educationOptions;
-    }
-
-    public List<String> getMartialStatusOption() {
-        return martialStatusOption;
-    }
+//    public List<String> getMunicipalOption() {
+//        return municipalOption;
+//    }
+//
+//    public List<String> getEducationOptions() {
+//        return educationOptions;
+//    }
+//
+//    public List<String> getMartialStatusOption() {
+//        return martialStatusOption;
+//    }
 }

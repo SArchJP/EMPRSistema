@@ -29,11 +29,12 @@ public class Student implements Serializable {
     @OneToOne
     private AdditionalInformation additionalInformation;
 
-    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, LearningNotFirstTime learningNotFirstTime, AdditionalInformation additionalInformation) {
+    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, AdditionalInformation additionalInformation, LearningNotFirstTime learningNotFirstTime) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.leftStudies = leftStudies;
+        this.additionalInformation = additionalInformation;
         this.learningNotFirstTime = learningNotFirstTime;
     }
 
@@ -77,6 +78,14 @@ public class Student implements Serializable {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public AdditionalInformation getAdditionalInformation() {
+        return additionalInformation;
+    }
+
+    public void setAdditionalInformation(AdditionalInformation additionalInformation) {
+        this.additionalInformation = additionalInformation;
     }
 
     public LearningNotFirstTime getLearningNotFirstTime() {
