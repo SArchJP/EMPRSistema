@@ -22,10 +22,14 @@ public class Student implements Serializable {
     private Date birthDate;
 
     private Boolean leftStudies;
+
     @OneToOne
     private LearningNotFirstTime learningNotFirstTime;
 
-    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, LearningNotFirstTime learningNotFirstTime) {
+    @OneToOne
+    private AdditionalInformation additionalInformation;
+
+    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, LearningNotFirstTime learningNotFirstTime, AdditionalInformation additionalInformation) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;

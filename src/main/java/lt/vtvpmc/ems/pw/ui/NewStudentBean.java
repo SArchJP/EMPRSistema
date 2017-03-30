@@ -2,11 +2,10 @@ package lt.vtvpmc.ems.pw.ui;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import lt.vtvpmc.ems.pw.entities.LearningNotFirstTime;
 import lt.vtvpmc.ems.pw.entities.Student;
+import lt.vtvpmc.ems.pw.entities.AdditionalInformation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -20,6 +19,7 @@ public class NewStudentBean {
     private String studentLastName;
     private Date studentBirthDate;
     private LearningNotFirstTime learningNotFirstTime;
+    private AdditionalInformation additionalInformation;
     private String gainedSpecialty;
     private String institution;
     private String institutionType;
@@ -29,11 +29,12 @@ public class NewStudentBean {
 
     @Transactional
     public String save() {
-        LearningNotFirstTime learningNotFirstTimeClass = new LearningNotFirstTime(gainedSpecialty, institution, institutionType, yearFinished);
-        entityManager.persist(learningNotFirstTimeClass);
-        Student student = new Student(studentFirstName, studentLastName, studentBirthDate, leftStudies);
-        student.setLearningNotFirstTime(learningNotFirstTimeClass);
-        entityManager.persist(student);
+//        LearningNotFirstTime learningNotFirstTimeClass = new LearningNotFirstTime(gainedSpecialty, institution, institutionType, yearFinished);
+//        entityManager.persist(learningNotFirstTimeClass);
+//        Student student = new Student(studentFirstName, studentLastName, studentBirthDate, leftStudies);
+//        student.setLearningNotFirstTime(learningNotFirstTimeClass);
+//        entityManager.persist(student);
+        Student student = new Student(studentFirstName, studentLastName, studentBirthDate, Boolean leftStudies, LearningNotFirstTime lerningNotFirstTime, AdditionalInformation additionalInformation);
         return "main.xhtml";
     }
 
