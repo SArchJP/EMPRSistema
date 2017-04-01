@@ -19,10 +19,27 @@
         <br/>
 
         <!--Moksleivio paieška-->
+        <!--Testuojama-->
+
         <h:form>
-            <h:inputText id="theSearchName" value="0"/>
-            <h:commandButton value="Rasti pagal pavarde" action="list-students?faces-redirect=true"
+            <h:inputText id="theSearchName" name="theSearchName"/>
+            <h:commandButton value="Rasti pagal varda" action="#{studentPageBean.findByName(theSearchName)}"
                              styleClass="add-student-button"/>
+            <p:dataTable value="#{studentPageBean.getfindByName(theSearchName)}" var="student">
+                <p:column>
+                    <f:facet name="header">
+                        Vardas
+                    </f:facet>
+                    <h:outputText value="#{student.firstName}"/>
+                </p:column>
+                <p:column>
+                    <f:facet name="header">
+                        Pavardė
+                    </f:facet>
+                    <h:outputText value="#{student.lastName}"/>
+                </p:column>
+            </p:dataTable>
+
         </h:form>
         <br/>
 

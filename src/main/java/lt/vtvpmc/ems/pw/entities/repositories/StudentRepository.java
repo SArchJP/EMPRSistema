@@ -18,4 +18,6 @@ public interface StudentRepository {
 
     public Student find(String firstName, String lastName, Date birthDate);
 
+    public List<Student> findByName(String firstName);
+
 }

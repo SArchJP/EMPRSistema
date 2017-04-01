@@ -65,7 +65,7 @@
             <h:inputText id="email" value="#{newStudentBean.email}" />
 
             <!-- Išsilavinimas -->
-            <p:outputLabel for="education">Elektroninis paštas: </p:outputLabel>
+            <p:outputLabel for="education">Išsilavinimas </p:outputLabel>
             <h:selectOneMenu id="education" value="#{newStudentBean.education}">
                 <f:selectItems value="#{dropDownMenusBean.educationOptions}"/>
             </h:selectOneMenu>
@@ -75,20 +75,17 @@
             <h:inputText id="nameOfFinishedSchool" value="#{newStudentBean.nameOfFinishedSchool}" />
 
             <!-- Mokyklos baigimo metai -->
-            <p:outputLabel for="studentBirthDate">Gimimo data:</p:outputLabel>
+            <p:outputLabel for="studentBirthDate">Mokyklos baigimo metai:</p:outputLabel>
             <p:calendar
                     id="yearFinishedEducation"
                     value="#{newStudentBean.yearFinishedEducation}"
                     showOn="button"
-                    required="true"
-                    requiredMessage="Klaida! Laukas yra privalomas"
-                    pattern="yyyy-MM-dd"
-                    past="true">
+                    pattern="yyyy-MM-dd">
             </p:calendar>
             <p:message for="yearFinishedEducation"/>
 
             <!-- Šeimyninė padėtis -->
-            <p:outputLabel for="maritalStatus">Elektroninis paštas: </p:outputLabel>
+            <p:outputLabel for="maritalStatus">Šeimyninė padėtis: </p:outputLabel>
             <h:selectOneMenu id="maritalStatus" value="#{newStudentBean.maritalStatus}">
                 <f:selectItems value="#{dropDownMenusBean.martialStatusOption}"/>
             </h:selectOneMenu>
@@ -122,9 +119,7 @@
                     id="yearFinished"
                     value="#{newStudentBean.yearFinished}"
                     showOn="button"
-                    requiredMessage="Klaida! Laukas yra privalomas"
                     pattern="yyyy-MM-dd">
-                <f:validateRequired/>
             </p:calendar>
             <p:message for="yearFinished"/>
 
