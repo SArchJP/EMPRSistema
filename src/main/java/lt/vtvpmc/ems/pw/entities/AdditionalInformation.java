@@ -4,9 +4,6 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 public class AdditionalInformation implements Serializable {
@@ -21,8 +18,7 @@ public class AdditionalInformation implements Serializable {
     private String email;
     private String education;
     private String nameOfFinishedSchool;
-    @Temporal(TemporalType.DATE)
-    private Date yearFinished;
+    private int yearFinished;
     private String maritalStatus;
 
     // Create no-arg constructor
@@ -31,7 +27,7 @@ public class AdditionalInformation implements Serializable {
     }
 
     //    Arg true constructor
-    public AdditionalInformation(String address, String municipal, long phone, String email, String education, String nameOfFinishedSchool, Date yearFinished, String maritalStatus) {
+    public AdditionalInformation(String address, String municipal, long phone, String email, String education, String nameOfFinishedSchool, int yearFinished, String maritalStatus) {
         this.address = address;
         this.municipal = municipal;
         this.phone = phone;
@@ -100,11 +96,11 @@ public class AdditionalInformation implements Serializable {
         this.nameOfFinishedSchool = nameOfFinishedSchool;
     }
 
-    public Date getYearFinished() {
+    public int getYearFinished() {
         return yearFinished;
     }
 
-    public void setYearFinished(Date yearFinished) {
+    public void setYearFinished(int yearFinished) {
         this.yearFinished = yearFinished;
     }
 
@@ -116,15 +112,4 @@ public class AdditionalInformation implements Serializable {
         this.maritalStatus = maritalStatus;
     }
 
-//    public List<String> getMunicipalOption() {
-//        return municipalOption;
-//    }
-//
-//    public List<String> getEducationOptions() {
-//        return educationOptions;
-//    }
-//
-//    public List<String> getMartialStatusOption() {
-//        return martialStatusOption;
-//    }
 }

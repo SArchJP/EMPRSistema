@@ -2,7 +2,6 @@ package lt.vtvpmc.ems.pw.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by Minde on 2017.03.29.
@@ -16,15 +15,14 @@ public class LearningNotFirstTime implements Serializable {
     private String gainedSpecialty;
     private String institution;
     private String institutionType;
-    @Temporal(TemporalType.DATE)
-    private Date yearFinished;
+    private int yearFinished;
 
 
     public LearningNotFirstTime() {
 
     }
 
-    public LearningNotFirstTime(String gainedSpecialty, String institution, String institutionType, Date yearFinished) {
+    public LearningNotFirstTime(String gainedSpecialty, String institution, String institutionType, int yearFinished) {
         this.gainedSpecialty = gainedSpecialty;
         this.institution = institution;
         this.institutionType = institutionType;
@@ -63,11 +61,11 @@ public class LearningNotFirstTime implements Serializable {
         this.institutionType = institutionType;
     }
 
-    public Date getYearFinished() {
+    public int getYearFinished() {
         return yearFinished;
     }
 
-    public void setYearFinished(Date yearFinished) {
+    public void setYearFinished(int yearFinished) {
         this.yearFinished = yearFinished;
     }
 }
