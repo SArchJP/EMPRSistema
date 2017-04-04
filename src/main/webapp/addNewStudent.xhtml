@@ -79,7 +79,9 @@
 
         <h:panelGrid columns="3">
             <!-- Išsilavinimas -->
-            <p:outputLabel for="education">Išsilavinimas: </p:outputLabel>
+
+            <p:outputLabel for="education">Išsilavinimas </p:outputLabel>
+
             <h:selectOneMenu id="education" value="#{newStudentBean.education}">
                 <f:selectItems value="#{dropDownMenusBean.educationOptions}"/>
             </h:selectOneMenu>
@@ -89,12 +91,14 @@
             <h:inputText id="nameOfFinishedSchool" value="#{newStudentBean.nameOfFinishedSchool}" />
 
             <!-- Mokyklos baigimo metai -->
+
             <p:outputLabel for="yearFinishedEducation">Įstaigos baigimo metai:</p:outputLabel>
             <h:selectOneMenu id="yearFinishedEducation" value="#{newStudentBean.yearFinishedEducation}">
                 <f:selectItems value="#{dropDownMenusBean.yearList}"/>
             </h:selectOneMenu>
         </h:panelGrid>
         <hr/>
+
             <!-- Šeimyninė padėtis -->
             <p:outputLabel for="maritalStatus">Šeimyninė padėtis: </p:outputLabel>
             <h:selectOneMenu id="maritalStatus" value="#{newStudentBean.maritalStatus}">
@@ -125,6 +129,7 @@
             <h:inputText id="institutionType" value="#{newStudentBean.institutionType}">
             </h:inputText>
             <p:message for="institutionType"/>
+
 
             <!-- Baigimo metai -->
             <p:outputLabel for="yearFinished">Įstaigos baigimo metai:</p:outputLabel>
