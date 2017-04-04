@@ -11,7 +11,7 @@
     <h:form id="newStudentForm">
         <h3>Įtraukti naują moksleivį</h3>
 
-        <h:panelGrid columns="1" layout="grid">
+        <h:panelGrid columns="4">
 
             <!-- __________________Pagrindiniai duomenys____________________ -->
 
@@ -41,19 +41,24 @@
             </p:calendar>
 
             <p:message for="studentBirthDate"/>
-
+        </h:panelGrid>
+        <hr/>
             <!-- ____________________Papildoma informacija____________________ -->
 
+        <h:panelGrid columns="6">
             <!--Moksleivio adresas-->
             <p:outputLabel for="clientAdress">Adresas: </p:outputLabel>
             <h:inputText id="clientAdress" value="#{newStudentBean.address}" />
 
             <!-- Svivaldybė -->
-            <p:outputLabel for="municipal">Savivaldybė</p:outputLabel>
+            <p:outputLabel for="municipal">Savivaldybė:</p:outputLabel>
             <h:selectOneMenu id="municipal" value="#{newStudentBean.municipal}">
                 <f:selectItems value="#{dropDownMenusBean.municipalOption}"/>
             </h:selectOneMenu>
+        </h:panelGrid>
+        <hr/>
 
+        <h:panelGrid columns="4">
             <!-- Telefonas -->
             <p:outputLabel for="phone">Telefonas: </p:outputLabel>
             <h:inputText id="phone" value="#{newStudentBean.phone}"
@@ -62,10 +67,21 @@
 
             <!-- Elektroninis paštas -->
             <p:outputLabel for="email">Elektroninis paštas: </p:outputLabel>
-            <h:inputText id="email" value="#{newStudentBean.email}" />
+            <h:inputText id="email"
+                         validatorMessage="Klaida. Blogas elektroninio pašto formatas!"
+                         value="#{newStudentBean.email}">
+            <f:validateRegex
+                    pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+            </h:inputText>
+            <p:message for="email"/>
+        </h:panelGrid>
+        <hr/>
 
+        <h:panelGrid columns="3">
             <!-- Išsilavinimas -->
+
             <p:outputLabel for="education">Išsilavinimas </p:outputLabel>
+
             <h:selectOneMenu id="education" value="#{newStudentBean.education}">
                 <f:selectItems value="#{dropDownMenusBean.educationOptions}"/>
             </h:selectOneMenu>
@@ -75,61 +91,59 @@
             <h:inputText id="nameOfFinishedSchool" value="#{newStudentBean.nameOfFinishedSchool}" />
 
             <!-- Mokyklos baigimo metai -->
-            <p:outputLabel for="yearFinishedEducation">Mokyklos baigimo metai:</p:outputLabel>
-            <p:calendar
-                    id="yearFinishedEducation"
-                    value="#{newStudentBean.yearFinishedEducation}"
-                    showOn="button"
-                    pattern="yyyy-MM-dd">
-            </p:calendar>
-            <p:message for="yearFinishedEducation"/>
+
+            <p:outputLabel for="yearFinishedEducation">Įstaigos baigimo metai:</p:outputLabel>
+            <h:selectOneMenu id="yearFinishedEducation" value="#{newStudentBean.yearFinishedEducation}">
+                <f:selectItems value="#{dropDownMenusBean.yearList}"/>
+            </h:selectOneMenu>
+        </h:panelGrid>
+        <hr/>
 
             <!-- Šeimyninė padėtis -->
             <p:outputLabel for="maritalStatus">Šeimyninė padėtis: </p:outputLabel>
             <h:selectOneMenu id="maritalStatus" value="#{newStudentBean.maritalStatus}">
                 <f:selectItems value="#{dropDownMenusBean.martialStatusOption}"/>
             </h:selectOneMenu>
-
-
-
-
+        <hr/>
             <!--<h:selectManyCheckbox value="#{newStudentBean.learningNotFirstTime}">-->
             <!--<f:selectItem itemValue="Taip" itemLabel="Taip"/>-->
             <!---->
             <!--</h:selectManyCheckbox>-->
 
             <!-- ____________________Jeigu mokosi antrą kartą____________________ -->
+            <!-- Įgyta specialybė -->
+        <h:panelGrid columns="4">
             <p:outputLabel for="gainedSpecialty">Įgyta specialybė:</p:outputLabel>
             <h:inputText id="gainedSpecialty" value="#{newStudentBean.gainedSpecialty}">
             </h:inputText>
             <p:message for="gainedSpecialty"/>
 
+            <!-- Institucijos pavadinimas -->
             <p:outputLabel for="institution">Institucijos pavadinimas:</p:outputLabel>
             <h:inputText id="institution" value="#{newStudentBean.institution}">
             </h:inputText>
             <p:message for="institution"/>
 
+            <!-- Institucijos tipas -->
             <p:outputLabel for="institutionType">Institucijos tipas:</p:outputLabel>
             <h:inputText id="institutionType" value="#{newStudentBean.institutionType}">
             </h:inputText>
             <p:message for="institutionType"/>
 
-            <p:outputLabel for="yearFinished">Baigimo metai:</p:outputLabel>
-            <p:calendar
-                    id="yearFinished"
-                    value="#{newStudentBean.yearFinished}"
-                    showOn="button"
-                    pattern="yyyy-MM-dd">
-            </p:calendar>
-            <p:message for="yearFinished"/>
+
+            <!-- Baigimo metai -->
+            <p:outputLabel for="yearFinished">Įstaigos baigimo metai:</p:outputLabel>
+            <h:selectOneMenu id="yearFinished" value="#{newStudentBean.yearFinished}">
+                <f:selectItems value="#{dropDownMenusBean.yearList}"/>
+            </h:selectOneMenu>
+            <hr/>
+        </h:panelGrid>
 
             <h:outputLabel>Nutraukė studijas: </h:outputLabel>
             <p:selectBooleanCheckbox value="#{newStudentBean.leftStudies}" />
-
-        </h:panelGrid>
-
-
-        <h:commandButton action="#{newStudentBean.save()}" value="Add"/>
+        <br/>
+        <h:commandButton action="#{newStudentBean.save()}" value="Pridėti naują moksleivį"/>
+        <h:commandButton action="#{newStudentBean.save()}" value="Atšaukti"/>
     </h:form>
 </h:body>
 </html>
