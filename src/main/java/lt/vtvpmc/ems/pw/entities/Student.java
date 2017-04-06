@@ -29,13 +29,20 @@ public class Student implements Serializable {
     @OneToOne
     private AdditionalInformation additionalInformation;
 
-    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, AdditionalInformation additionalInformation, LearningNotFirstTime learningNotFirstTime) {
+    @OneToOne
+    private RequestForm requestForm;
+
+    public Student() {
+    }
+
+    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, LearningNotFirstTime learningNotFirstTime, AdditionalInformation additionalInformation, RequestForm requestForm) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.leftStudies = leftStudies;
-        this.additionalInformation = additionalInformation;
         this.learningNotFirstTime = learningNotFirstTime;
+        this.additionalInformation = additionalInformation;
+        this.requestForm = requestForm;
     }
 
     public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies) {
@@ -43,9 +50,6 @@ public class Student implements Serializable {
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.leftStudies = leftStudies;
-    }
-
-    public Student() {
     }
 
     public Long getId() {
@@ -102,5 +106,13 @@ public class Student implements Serializable {
 
     public void setLeftStudies(Boolean leftStudies) {
         this.leftStudies = leftStudies;
+    }
+
+    public RequestForm getRequestForm() {
+        return requestForm;
+    }
+
+    public void setRequestForm(RequestForm requestForm) {
+        this.requestForm = requestForm;
     }
 }

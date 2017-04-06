@@ -13,8 +13,8 @@ public class DropDownMenusBean {
     List<String> municipalOption;
     List<String> educationOptions;
     List<String> martialStatusOption;
+    List<String> requestTierOptions;
     List<Integer> yearList;
-
     // No-arg constructor
 
     public DropDownMenusBean() {
@@ -48,6 +48,11 @@ public class DropDownMenusBean {
         martialStatusOption.add("vedęs/ištekėjusi");
         martialStatusOption.add("nevedęs/neištekėjusi");
         martialStatusOption.add("našlaitis(-ė)");
+
+
+        requestTierOptions = new ArrayList<String>();
+        requestTierOptions.add("III pakopa");
+        requestTierOptions.add("IV pakopa");
 
         yearList = new ArrayList<Integer>();
         yearList.add(2017);
@@ -101,6 +106,11 @@ public class DropDownMenusBean {
 
     public List<String> getMartialStatusOption() {
         return martialStatusOption;
+    }
+
+
+    public List<String> getRequestTierOptions() {
+        return requestTierOptions;
     }
 
     public List<Integer> getYearList() {
