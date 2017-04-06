@@ -33,14 +33,15 @@ public class NewStudentBean {
     private String email;
     private String education;
     private String nameOfFinishedSchool;
-    private Date yearFinishedEducation;
+    private int yearFinishedEducation;
     private String maritalStatus;
 
     //    Learning not first time
     private String gainedSpecialty;
     private String institution;
     private String institutionType;
-    private Date yearFinished;
+    private int yearFinished;
+
     private Boolean leftStudies;
 
 //    Request Form
@@ -169,11 +170,11 @@ public class NewStudentBean {
         this.nameOfFinishedSchool = nameOfFinishedSchool;
     }
 
-    public Date getYearFinishedEducation() {
+    public int getYearFinishedEducation() {
         return yearFinishedEducation;
     }
 
-    public void setYearFinishedEducation(Date yearFinishedEducation) {
+    public void setYearFinishedEducation(int yearFinishedEducation) {
         this.yearFinishedEducation = yearFinishedEducation;
     }
 
@@ -218,11 +219,11 @@ public class NewStudentBean {
         this.institutionType = institutionType;
     }
 
-    public Date getYearFinished() {
+    public int getYearFinished() {
         return yearFinished;
     }
 
-    public void setYearFinished(Date yearFinished) {
+    public void setYearFinished(int yearFinished) {
         this.yearFinished = yearFinished;
     }
 

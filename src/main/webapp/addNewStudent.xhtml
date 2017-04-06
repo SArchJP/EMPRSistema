@@ -39,10 +39,13 @@
             <p:outputLabel for="phone">Telefonas:</p:outputLabel>
             <h:inputText id="phone" value="#{newStudentBean.phone}"
                          converterMessage="Klaida! Naudokite tik skaičius."/>
-            <p:outputLabel for="email">Elektroninis paštas:</p:outputLabel>
-            <h:inputText id="email" value="#{newStudentBean.email}"/>
-
-
+            <p:outputLabel for="email">Elektroninis paštas: </p:outputLabel>
+            <h:inputText id="email"
+                         validatorMessage="Klaida. Blogas elektroninio pašto formatas!"
+                         value="#{newStudentBean.email}">
+                <f:validateRegex
+                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+            </h:inputText>
             <p:outputLabel for="education">Išsilavinimas</p:outputLabel>
             <h:selectOneMenu id="education" value="#{newStudentBean.education}">
                 <f:selectItems value="#{dropDownMenusBean.educationOptions}"/>
@@ -74,13 +77,10 @@
             <p:outputLabel for="institutionType">Institucijos tipas:</p:outputLabel>
             <h:inputText id="institutionType" value="#{newStudentBean.institutionType}">
             </h:inputText>
-            <p:outputLabel for="yearFinished">Baigimo metai:</p:outputLabel>
-            <p:calendar
-                    id="yearFinished"
-                    value="#{newStudentBean.yearFinished}"
-                    showOn="button"
-                    pattern="yyyy-MM-dd">
-            </p:calendar>
+            <p:outputLabel for="yearFinished">Įstaigos baigimo metai:</p:outputLabel>
+            <h:selectOneMenu id="yearFinished" value="#{newStudentBean.yearFinished}">
+                <f:selectItems value="#{dropDownMenusBean.yearList}"/>
+            </h:selectOneMenu>
         </h:panelGrid>
 
         <h3>Prašymas</h3>
@@ -124,6 +124,7 @@
             <p:selectBooleanCheckbox value="#{newStudentBean.leftStudies}"/>
         </h:panelGrid>
         <h:commandButton action="#{newStudentBean.save()}" value="Add" update="growl"/>
+        <h:commandButton action="#{newStudentBean.save()}" value="Atšaukti"/>
     </h:form>
 </h:body>
 </html>
