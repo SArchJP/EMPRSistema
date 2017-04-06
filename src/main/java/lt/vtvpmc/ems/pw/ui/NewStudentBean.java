@@ -4,6 +4,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import lt.vtvpmc.ems.pw.entities.LearningNotFirstTime;
+import lt.vtvpmc.ems.pw.entities.RequestForm;
 import lt.vtvpmc.ems.pw.entities.Student;
 import lt.vtvpmc.ems.pw.entities.AdditionalInformation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +24,7 @@ public class NewStudentBean {
     //    Classes implementation
     private LearningNotFirstTime learningNotFirstTime;
     private AdditionalInformation additionalInformation;
+    private RequestForm requestForm;
 
     //    Additional information
     private String address;
@@ -39,8 +41,18 @@ public class NewStudentBean {
     private String institution;
     private String institutionType;
     private Date yearFinished;
-
     private Boolean leftStudies;
+
+//    Request Form
+    private Date requestDate;
+    private String requestToGroup;
+    private String requestTier;
+    private Boolean educationDocuments;
+    private Boolean healthDocument;
+    private Boolean photos;
+    private Boolean passportCopy;
+    private Boolean drafteeCertificate;
+    private Boolean entranceFee;
 
 
     @Transactional
@@ -52,9 +64,15 @@ public class NewStudentBean {
         LearningNotFirstTime learningNotFirstTimeClass = new LearningNotFirstTime(gainedSpecialty, institution, institutionType, yearFinished);
         entityManager.persist(learningNotFirstTimeClass);
 
+        RequestForm requestForm = new RequestForm();
+
+//        RequestForm requestForm = new RequestForm(requestDate, requestToGroup, requestTier, educationDocuments, healthDocument, photos, passportCopy, drafteeCertificate, entranceFee);
+        entityManager.persist(requestForm);
+
         Student student = new Student(studentFirstName, studentLastName, studentBirthDate, leftStudies);
         student.setAdditionalInformation(additionalInformationClass);
         student.setLearningNotFirstTime(learningNotFirstTimeClass);
+        student.setRequestForm(requestForm);
         entityManager.persist(student);
 
         return "main.xhtml";
@@ -214,5 +232,85 @@ public class NewStudentBean {
 
     public void setLeftStudies(Boolean leftStudies) {
         this.leftStudies = leftStudies;
+    }
+
+    public RequestForm getRequestForm() {
+        return requestForm;
+    }
+
+    public void setRequestForm(RequestForm requestForm) {
+        this.requestForm = requestForm;
+    }
+
+    public Date getRequestDate() {
+        return requestDate;
+    }
+
+    public void setRequestDate(Date requestDate) {
+        this.requestDate = requestDate;
+    }
+
+    public String getRequestToGroup() {
+        return requestToGroup;
+    }
+
+    public void setRequestToGroup(String requestToGroup) {
+        this.requestToGroup = requestToGroup;
+    }
+
+    public String getRequestTier() {
+        return requestTier;
+    }
+
+    public void setRequestTier(String requestTier) {
+        this.requestTier = requestTier;
+    }
+
+    public Boolean getEducationDocuments() {
+        return educationDocuments;
+    }
+
+    public void setEducationDocuments(Boolean educationDocuments) {
+        this.educationDocuments = educationDocuments;
+    }
+
+    public Boolean getHealthDocument() {
+        return healthDocument;
+    }
+
+    public void setHealthDocument(Boolean healthDocument) {
+        this.healthDocument = healthDocument;
+    }
+
+    public Boolean getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(Boolean photos) {
+        this.photos = photos;
+    }
+
+    public Boolean getPassportCopy() {
+        return passportCopy;
+    }
+
+    public void setPassportCopy(Boolean passportCopy) {
+        this.passportCopy = passportCopy;
+    }
+
+    public Boolean getDrafteeCertificate() {
+        return drafteeCertificate;
+    }
+
+    public void setDrafteeCertificate(Boolean drafteeCertificate) {
+        this.drafteeCertificate = drafteeCertificate;
+    }
+
+    public Boolean getEntranceFee() {
+        return entranceFee;
+    }
+
+    public void setEntranceFee(Boolean entranceFee) {
+        this.entranceFee = entranceFee;
     }
 }
