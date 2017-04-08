@@ -4,6 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 @Entity
 public class AdditionalInformation implements Serializable {
@@ -18,7 +19,8 @@ public class AdditionalInformation implements Serializable {
     private String email;
     private String education;
     private String nameOfFinishedSchool;
-    private int yearFinished;
+    @Temporal(TemporalType.DATE)
+    private Date yearFinished;
     private String maritalStatus;
 
     // Create no-arg constructor
@@ -27,7 +29,7 @@ public class AdditionalInformation implements Serializable {
     }
 
     //    Arg true constructor
-    public AdditionalInformation(String address, String municipal, long phone, String email, String education, String nameOfFinishedSchool, int yearFinished, String maritalStatus) {
+    public AdditionalInformation(String address, String municipal, long phone, String email, String education, String nameOfFinishedSchool, Date yearFinished, String maritalStatus) {
         this.address = address;
         this.municipal = municipal;
         this.phone = phone;
@@ -96,11 +98,11 @@ public class AdditionalInformation implements Serializable {
         this.nameOfFinishedSchool = nameOfFinishedSchool;
     }
 
-    public int getYearFinished() {
+    public Date getYearFinished() {
         return yearFinished;
     }
 
-    public void setYearFinished(int yearFinished) {
+    public void setYearFinished(Date yearFinished) {
         this.yearFinished = yearFinished;
     }
 

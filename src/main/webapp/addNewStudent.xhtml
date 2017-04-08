@@ -44,7 +44,7 @@
                          validatorMessage="Klaida. Blogas elektroninio pašto formatas!"
                          value="#{newStudentBean.email}">
                 <f:validateRegex
-                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                        pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$"/>
             </h:inputText>
             <p:outputLabel for="education">Išsilavinimas</p:outputLabel>
             <h:selectOneMenu id="education" value="#{newStudentBean.education}">
@@ -54,10 +54,10 @@
             <h:inputText id="nameOfFinishedSchool" value="#{newStudentBean.nameOfFinishedSchool}"/>
             <p:outputLabel for="yearFinishedEducation">Mokyklos baigimo metai:</p:outputLabel>
             <p:calendar
-                    id="yearFinishedEducation"
-                    value="#{newStudentBean.yearFinishedEducation}"
-                    showOn="button"
-                    pattern="yyyy-MM-dd">
+            id="yearFinishedEducation"
+            value="#{newStudentBean.yearFinishedEducation}"
+            showOn="button"
+            pattern="yyyy-MM-dd">
             </p:calendar>
             <p:outputLabel for="maritalStatus">Šeimyninė padėtis:</p:outputLabel>
             <h:selectOneMenu id="maritalStatus" value="#{newStudentBean.maritalStatus}">
@@ -118,13 +118,45 @@
             <h:outputLabel>Stojimo mokestis:</h:outputLabel>
             <p:selectBooleanCheckbox value="#{newStudentBean.entranceFee}"/>
         </h:panelGrid>
-
         <h:panelGrid columns="4" layout="grid">
             <h:outputLabel>Nutraukė studijas:</h:outputLabel>
             <p:selectBooleanCheckbox value="#{newStudentBean.leftStudies}"/>
         </h:panelGrid>
-        <h:commandButton action="#{newStudentBean.save()}" value="Add" update="growl"/>
-        <h:commandButton action="#{newStudentBean.save()}" value="Atšaukti"/>
+
+        <h3>Domenys apie tėvus/globėjus</h3>
+        <h:panelGrid columns="4" layout="grid">
+            <p:outputLabel for="dadsName">Tėvo vardas:</p:outputLabel>
+            <h:inputText id="dadsName" value="#{newStudentBean.dadsName}"></h:inputText>
+            <p:outputLabel for="dadsSecondName">Tėvo pavardė:</p:outputLabel>
+            <h:inputText id="dadsSecondName" value="#{newStudentBean.dadsSecondName}"></h:inputText>
+            <p:outputLabel for="dadsAddress">Tėvo adresas:</p:outputLabel>
+            <h:inputText id="dadsAddress" value="#{newStudentBean.dadsAddress}"></h:inputText>
+            <p:outputLabel for="dadsPhone">Tėvo telefonas:</p:outputLabel>
+            <h:inputText id="dadsPhone" value="#{newStudentBean.dadsPhone}"
+                         converterMessage="Klaida! Naudokite tik skaičius."/>
+            <p:outputLabel for="momsName">Motinos vardas:</p:outputLabel>
+            <h:inputText id="momsName" value="#{newStudentBean.momsName}"></h:inputText>
+            <p:outputLabel for="momsSecondName">Motinos pavardė:</p:outputLabel>
+            <h:inputText id="momsSecondName" value="#{newStudentBean.momsSecondName}"></h:inputText>
+            <p:outputLabel for="momsAddress">Motinos adresas:</p:outputLabel>
+            <h:inputText id="momsAddress" value="#{newStudentBean.momsAddress}"></h:inputText>
+            <p:outputLabel for="momsPhone">Motinos telefonas:</p:outputLabel>
+            <h:inputText id="momsPhone" value="#{newStudentBean.momsPhone}"
+                         converterMessage="Klaida! Naudokite tik skaičius."/>
+            <p:outputLabel for="guardiansName">Globėjo vardas:</p:outputLabel>
+            <h:inputText id="guardiansName" value="#{newStudentBean.guardiansName}"></h:inputText>
+            <p:outputLabel for="guardiansSecondName">Globėjo pavardė:</p:outputLabel>
+            <h:inputText id="guardiansSecondName" value="#{newStudentBean.guardiansSecondName}"></h:inputText>
+            <p:outputLabel for="guardiansAddress">Globėjo adresas:</p:outputLabel>
+            <h:inputText id="guardiansAddress" value="#{newStudentBean.guardiansAddress}"></h:inputText>
+            <p:outputLabel for="guardiansPhone">Globėjo telefonas:</p:outputLabel>
+            <h:inputText id="guardiansPhone" value="#{newStudentBean.guardiansPhone}"
+                         converterMessage="Klaida! Naudokite tik skaičius."/>
+
+
+        </h:panelGrid>
+        <h:commandButton action="#{newStudentBean.save()}" value="Pridėti" update="growl"/>
+        <h:commandButton action="main" value="Atšaukti" immediate="true"/>
     </h:form>
 </h:body>
 </html>
