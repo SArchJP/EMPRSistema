@@ -35,6 +35,12 @@ public class Student implements Serializable {
     @OneToOne
     private Parents parents;
 
+    @OneToOne
+    private RequiredCourses requiredCourses;
+
+    @OneToOne
+    private OptionalCourses optionalCourses;
+
     public Student() {
     }
 
@@ -125,5 +131,21 @@ public class Student implements Serializable {
 
     public void setParents(Parents parents) {
         this.parents = parents;
+    }
+
+    public RequiredCourses getRequiredCourses() {
+        return requiredCourses;
+    }
+
+    public void setRequiredCourses(RequiredCourses requiredCourses) {
+        this.requiredCourses = requiredCourses;
+    }
+
+    public OptionalCourses getOptionalCourses() {
+        return optionalCourses;
+    }
+
+    public void setOptionalCourses(OptionalCourses optionalCourses) {
+        this.optionalCourses = optionalCourses;
     }
 }
