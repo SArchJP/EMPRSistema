@@ -3,10 +3,7 @@ package lt.vtvpmc.ems.pw.ui;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import lt.vtvpmc.ems.pw.entities.LearningNotFirstTime;
-import lt.vtvpmc.ems.pw.entities.RequestForm;
-import lt.vtvpmc.ems.pw.entities.Student;
-import lt.vtvpmc.ems.pw.entities.AdditionalInformation;
+import lt.vtvpmc.ems.pw.entities.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
@@ -33,7 +30,7 @@ public class NewStudentBean {
     private String email;
     private String education;
     private String nameOfFinishedSchool;
-    private int yearFinishedEducation;
+    private Date yearFinishedEducation;
     private String maritalStatus;
 
     //    Learning not first time
@@ -44,7 +41,7 @@ public class NewStudentBean {
 
     private Boolean leftStudies;
 
-//    Request Form
+    //    Request Form
     private Date requestDate;
     private String requestToGroup;
     private String requestTier;
@@ -54,6 +51,23 @@ public class NewStudentBean {
     private Boolean passportCopy;
     private Boolean drafteeCertificate;
     private Boolean entranceFee;
+
+    //    Information about Parents
+    // Dad
+    private String dadsName;
+    private String dadsSecondName;
+    private String dadsAddress;
+    private long dadsPhone;
+    // Mom
+    private String momsName;
+    private String momsSecondName;
+    private String momsAddress;
+    private long momsPhone;
+    // Guardian
+    private String guardiansName;
+    private String guardiansSecondName;
+    private String guardiansAddress;
+    private long guardiansPhone;
 
 
     @Transactional
@@ -66,14 +80,17 @@ public class NewStudentBean {
         entityManager.persist(learningNotFirstTimeClass);
 
         RequestForm requestForm = new RequestForm();
-
 //        RequestForm requestForm = new RequestForm(requestDate, requestToGroup, requestTier, educationDocuments, healthDocument, photos, passportCopy, drafteeCertificate, entranceFee);
         entityManager.persist(requestForm);
+
+        Parents parents = new Parents(dadsName, dadsSecondName, dadsAddress, dadsPhone, momsName, momsSecondName, momsAddress, momsPhone, guardiansName, guardiansSecondName, guardiansAddress, guardiansPhone);
+        entityManager.persist(parents);
 
         Student student = new Student(studentFirstName, studentLastName, studentBirthDate, leftStudies);
         student.setAdditionalInformation(additionalInformationClass);
         student.setLearningNotFirstTime(learningNotFirstTimeClass);
         student.setRequestForm(requestForm);
+        student.setParents(parents);
         entityManager.persist(student);
 
         return "main.xhtml";
@@ -170,11 +187,11 @@ public class NewStudentBean {
         this.nameOfFinishedSchool = nameOfFinishedSchool;
     }
 
-    public int getYearFinishedEducation() {
+    public Date getYearFinishedEducation() {
         return yearFinishedEducation;
     }
 
-    public void setYearFinishedEducation(int yearFinishedEducation) {
+    public void setYearFinishedEducation(Date yearFinishedEducation) {
         this.yearFinishedEducation = yearFinishedEducation;
     }
 
@@ -313,5 +330,101 @@ public class NewStudentBean {
 
     public void setEntranceFee(Boolean entranceFee) {
         this.entranceFee = entranceFee;
+    }
+
+    public String getDadsName() {
+        return dadsName;
+    }
+
+    public void setDadsName(String dadsName) {
+        this.dadsName = dadsName;
+    }
+
+    public String getDadsSecondName() {
+        return dadsSecondName;
+    }
+
+    public void setDadsSecondName(String dadsSecondName) {
+        this.dadsSecondName = dadsSecondName;
+    }
+
+    public String getDadsAddress() {
+        return dadsAddress;
+    }
+
+    public void setDadsAddress(String dadsAddress) {
+        this.dadsAddress = dadsAddress;
+    }
+
+    public long getDadsPhone() {
+        return dadsPhone;
+    }
+
+    public void setDadsPhone(long dadsPhone) {
+        this.dadsPhone = dadsPhone;
+    }
+
+    public String getMomsName() {
+        return momsName;
+    }
+
+    public void setMomsName(String momsName) {
+        this.momsName = momsName;
+    }
+
+    public String getMomsSecondName() {
+        return momsSecondName;
+    }
+
+    public void setMomsSecondName(String momsSecondName) {
+        this.momsSecondName = momsSecondName;
+    }
+
+    public String getMomsAddress() {
+        return momsAddress;
+    }
+
+    public void setMomsAddress(String momsAddress) {
+        this.momsAddress = momsAddress;
+    }
+
+    public long getMomsPhone() {
+        return momsPhone;
+    }
+
+    public void setMomsPhone(long momsPhone) {
+        this.momsPhone = momsPhone;
+    }
+
+    public String getGuardiansName() {
+        return guardiansName;
+    }
+
+    public void setGuardiansName(String guardiansName) {
+        this.guardiansName = guardiansName;
+    }
+
+    public String getGuardiansSecondName() {
+        return guardiansSecondName;
+    }
+
+    public void setGuardiansSecondName(String guardiansSecondName) {
+        this.guardiansSecondName = guardiansSecondName;
+    }
+
+    public String getGuardiansAddress() {
+        return guardiansAddress;
+    }
+
+    public void setGuardiansAddress(String guardiansAddress) {
+        this.guardiansAddress = guardiansAddress;
+    }
+
+    public long getGuardiansPhone() {
+        return guardiansPhone;
+    }
+
+    public void setGuardiansPhone(long guardiansPhone) {
+        this.guardiansPhone = guardiansPhone;
     }
 }

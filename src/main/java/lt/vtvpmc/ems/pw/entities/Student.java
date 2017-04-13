@@ -32,10 +32,19 @@ public class Student implements Serializable {
     @OneToOne
     private RequestForm requestForm;
 
+    @OneToOne
+    private Parents parents;
+
+    @OneToOne
+    private RequiredCourses requiredCourses;
+
+    @OneToOne
+    private OptionalCourses optionalCourses;
+
     public Student() {
     }
 
-    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, LearningNotFirstTime learningNotFirstTime, AdditionalInformation additionalInformation, RequestForm requestForm) {
+    public Student(String firstName, String lastName, Date birthDate, Boolean leftStudies, LearningNotFirstTime learningNotFirstTime, AdditionalInformation additionalInformation, RequestForm requestForm, Parents parents) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
@@ -114,5 +123,29 @@ public class Student implements Serializable {
 
     public void setRequestForm(RequestForm requestForm) {
         this.requestForm = requestForm;
+    }
+
+    public Parents getParents() {
+        return parents;
+    }
+
+    public void setParents(Parents parents) {
+        this.parents = parents;
+    }
+
+    public RequiredCourses getRequiredCourses() {
+        return requiredCourses;
+    }
+
+    public void setRequiredCourses(RequiredCourses requiredCourses) {
+        this.requiredCourses = requiredCourses;
+    }
+
+    public OptionalCourses getOptionalCourses() {
+        return optionalCourses;
+    }
+
+    public void setOptionalCourses(OptionalCourses optionalCourses) {
+        this.optionalCourses = optionalCourses;
     }
 }
