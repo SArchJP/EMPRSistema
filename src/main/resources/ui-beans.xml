@@ -16,6 +16,8 @@
 
     <bean id="studentListBean" class="lt.vtvpmc.ems.pw.ui.StudentListBean" scope="request"/>
 
+    <bean id="studentFindBean" class="lt.vtvpmc.ems.pw.ui.StudentFindBean" scope="request"/>
+
 
     <bean id="studentPageData" class="lt.vtvpmc.ems.pw.ui.controllers.StudentPageData"
           scope="session" init-method="init"/>
