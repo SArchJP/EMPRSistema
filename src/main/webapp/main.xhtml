@@ -22,24 +22,25 @@
         <!--Testuojama-->
 
         <h:form>
-            <h:inputText id="theSearchName" name="theSearchName"/>
-            <h:commandButton value="Rasti pagal varda" action="#{studentPageBean.findByName(theSearchName)}"
-                             styleClass="add-student-button"/>
-            <p:dataTable value="#{studentPageBean.getfindByName(theSearchName)}" var="student">
+            <h:inputText id="theSearchName" value="#{studentFindBean.lastName}"/>
+            <h:commandButton value="Rasti pagal varda"
+                             styleClass="add-student-button">
+                <f:ajax execute="@form" render="@form"/>
+            </h:commandButton>
+            <p:dataTable value="#{studentFindBean.studentBySecondName}" var="find">
                 <p:column>
                     <f:facet name="header">
                         Vardas
                     </f:facet>
-                    <h:outputText value="#{student.firstName}"/>
+                    <h:outputText value="#{find.firstName}"/>
                 </p:column>
                 <p:column>
                     <f:facet name="header">
                         Pavardė
                     </f:facet>
-                    <h:outputText value="#{student.lastName}"/>
+                    <h:outputText value="#{find.lastName}"/>
                 </p:column>
             </p:dataTable>
-
         </h:form>
         <br/>
 

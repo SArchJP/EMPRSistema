@@ -5,8 +5,11 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
 import lt.vtvpmc.ems.pw.entities.Student;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 
 public class StudentListBean {
     
@@ -15,7 +18,7 @@ public class StudentListBean {
     
     @Transactional(readOnly = true)
     public List<Student> getStudentList() {
-        Query q = entityManager.createQuery("select c from Student c");
+        Query q = entityManager.createQuery("select c from Student c order by c.lastName");
         return q.getResultList();
     }
     
@@ -23,6 +26,12 @@ public class StudentListBean {
     public void removeStudent(Student student) {
         entityManager.remove(entityManager.merge(student));
     }
+
+    @Transactional
+    public void updateStudent(Student student) {
+        entityManager.find(Student.class, student);
+    }
+
 
     public EntityManager getEntityManager() {
         return entityManager;
