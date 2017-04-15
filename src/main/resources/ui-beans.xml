@@ -12,7 +12,9 @@
 
     <bean id="dropDownMenusBean" class="lt.vtvpmc.ems.pw.ui.DropDownMenusBean" scope="request"/>
 
-    <bean id="newStudentBean" class="lt.vtvpmc.ems.pw.ui.NewStudentBean" scope="request"/>
+    <bean id="newStudentBean" class="lt.vtvpmc.ems.pw.ui.NewStudentBean" scope="request">
+        <property name="studentPageBean" ref="studentPageBean"/>
+    </bean>
 
     <bean id="studentListBean" class="lt.vtvpmc.ems.pw.ui.StudentListBean" scope="request"/>
 

@@ -16,6 +16,7 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import javax.persistence.metamodel.Metamodel;
 import javax.transaction.Transactional;
+import java.util.Date;
 import java.util.List;
 
 
@@ -24,19 +25,16 @@ import java.util.List;
  */
 
 public class StudentPageBean {
-    public StudentPageBean(){
-    }
-
     public static final String NAV_LIST_STUDENTS = "main.xhtml";
-
     public StudentPageData studentPageData;
-
     public StudentRepository studentRepository;
     @PersistenceContext
     private EntityManager entityManager;
-
     private String firstName;
     private String lastName;
+    private Date birthDate;
+    public StudentPageBean() {
+    }
 //    Kaip pavyzdziuose bet neveikia
 //    @Transactional
 //    public String addNew() {
@@ -45,18 +43,29 @@ public class StudentPageBean {
 //        return NAV_LIST_STUDENTS;
 //    }
 
-
     @Transactional
-    public List<Student> getfindByName(){
+    public List<Student> getfindByName() {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
         Root<Student> studentRoot = criteriaQuery.from(Student.class);
         criteriaQuery.select(studentRoot);
-        criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(studentRoot.get(Student_.firstName),firstName)),(criteriaBuilder.equal(studentRoot.get(Student_.lastName),lastName)));
+        criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(studentRoot.get(Student_.firstName), firstName)), (criteriaBuilder.equal(studentRoot.get(Student_.lastName), lastName)));
 
         TypedQuery<Student> typedQuery = entityManager.createQuery(criteriaQuery);
         List<Student> foundStudents = typedQuery.getResultList();
-    return foundStudents;
+        return foundStudents;
+    }
+
+    @Transactional
+    public List<Student> getfindByName(String firstName, String lastName, Date birthDate) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> studentRoot = criteriaQuery.from(Student.class);
+        criteriaQuery.select(studentRoot);
+        criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(studentRoot.get(Student_.firstName), firstName)), (criteriaBuilder.equal(studentRoot.get(Student_.lastName), lastName)), (criteriaBuilder.equal(studentRoot.get(Student_.birthDate), birthDate)));
+        TypedQuery<Student> typedQuery = entityManager.createQuery(criteriaQuery);
+        List<Student> foundStudents = typedQuery.getResultList();
+        return foundStudents;
     }
 
 
@@ -90,5 +99,13 @@ public class StudentPageBean {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Date getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
     }
 }
