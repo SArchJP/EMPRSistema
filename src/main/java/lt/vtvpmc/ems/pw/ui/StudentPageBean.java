@@ -5,6 +5,7 @@ import lt.vtvpmc.ems.pw.entities.Student_;
 import lt.vtvpmc.ems.pw.entities.repositories.StudentRepository;
 import lt.vtvpmc.ems.pw.ui.controllers.StudentPageData;
 import org.hibernate.type.EntityType;
+import org.hibernate.type.StringNVarcharType;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,7 +24,6 @@ import java.util.List;
  */
 
 public class StudentPageBean {
-
     public StudentPageBean(){
     }
 
@@ -34,6 +34,9 @@ public class StudentPageBean {
     public StudentRepository studentRepository;
     @PersistenceContext
     private EntityManager entityManager;
+
+    private String firstName;
+    private String lastName;
 //    Kaip pavyzdziuose bet neveikia
 //    @Transactional
 //    public String addNew() {
@@ -44,12 +47,13 @@ public class StudentPageBean {
 
 
     @Transactional
-    public List<Student> getfindByName(String firstName){
+    public List<Student> getfindByName(){
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
         Root<Student> studentRoot = criteriaQuery.from(Student.class);
         criteriaQuery.select(studentRoot);
-        criteriaQuery.where(criteriaBuilder.equal(studentRoot.get(Student_.firstName),firstName));
+        criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(studentRoot.get(Student_.firstName),firstName)),(criteriaBuilder.equal(studentRoot.get(Student_.lastName),lastName)));
+
         TypedQuery<Student> typedQuery = entityManager.createQuery(criteriaQuery);
         List<Student> foundStudents = typedQuery.getResultList();
     return foundStudents;
@@ -70,5 +74,21 @@ public class StudentPageBean {
 
     public void setStudentRepository(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
