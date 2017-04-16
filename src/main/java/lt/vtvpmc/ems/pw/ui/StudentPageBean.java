@@ -57,15 +57,27 @@ public class StudentPageBean {
     }
 
     @Transactional
-    public List<Student> getfindByName(String firstName, String lastName, Date birthDate) {
+    public Student getfindByName(String firstName, String lastName, Date birthDate) {
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
         CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
         Root<Student> studentRoot = criteriaQuery.from(Student.class);
         criteriaQuery.select(studentRoot);
         criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(studentRoot.get(Student_.firstName), firstName)), (criteriaBuilder.equal(studentRoot.get(Student_.lastName), lastName)), (criteriaBuilder.equal(studentRoot.get(Student_.birthDate), birthDate)));
         TypedQuery<Student> typedQuery = entityManager.createQuery(criteriaQuery);
-        List<Student> foundStudents = typedQuery.getResultList();
-        return foundStudents;
+        Student foundStudent = typedQuery.getSingleResult();
+        return foundStudent;
+    }
+
+    @Transactional
+    public Student getfindByName(String firstName, String lastName) {
+        CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
+        CriteriaQuery<Student> criteriaQuery = criteriaBuilder.createQuery(Student.class);
+        Root<Student> studentRoot = criteriaQuery.from(Student.class);
+        criteriaQuery.select(studentRoot);
+        criteriaQuery.where(criteriaBuilder.and(criteriaBuilder.equal(studentRoot.get(Student_.firstName), firstName)), (criteriaBuilder.equal(studentRoot.get(Student_.lastName), lastName)));
+        TypedQuery<Student> typedQuery = entityManager.createQuery(criteriaQuery);
+        Student foundStudent = typedQuery.getSingleResult();
+        return foundStudent;
     }
 
 

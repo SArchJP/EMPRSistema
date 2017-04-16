@@ -72,7 +72,7 @@ public class NewStudentBean {
 
     @Transactional
     public String save(){
-        if (studentPageBean.getfindByName(studentFirstName, studentLastName, studentBirthDate).isEmpty()){
+        if (studentPageBean.getfindByName(studentFirstName, studentLastName, studentBirthDate).equals(null)){
             AdditionalInformation additionalInformationClass = new AdditionalInformation(address, municipal, phone, email, education, nameOfFinishedSchool, yearFinishedEducation, maritalStatus);
             entityManager.persist(additionalInformationClass);
 
