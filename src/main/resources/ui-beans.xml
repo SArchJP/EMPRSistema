@@ -30,7 +30,8 @@
 
     <bean id="studentPageBean" class="lt.vtvpmc.ems.pw.ui.StudentPageBean" scope="request">
         <property name="studentPageData" ref="studentPageData"/>
-
     </bean>
+
+    <bean id="studentRequiredCoursesBean" class="lt.vtvpmc.ems.pw.entities.RequiredCourses" scope="request"/>
 
 </beans>
