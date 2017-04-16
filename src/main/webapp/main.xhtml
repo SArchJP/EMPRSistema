@@ -22,12 +22,13 @@
         <!--Testuojama-->
 
         <h:form>
-            <h:inputText id="theSearchName" value="#{studentFindBean.lastName}"/>
+            <h:inputText id="theSearchName" value="#{studentPageBean.firstName}" placeholder="Vardas"/>
+            <h:inputText id="theSearchLastName" value="#{studentPageBean.lastName}" placeholder="Pavardė"/>
             <h:commandButton value="Rasti pagal varda"
                              styleClass="add-student-button">
                 <f:ajax execute="@form" render="@form"/>
             </h:commandButton>
-            <p:dataTable value="#{studentFindBean.studentBySecondName}" var="find">
+            <p:dataTable value="#{studentPageBean.findByName}" var="find">
                 <p:column>
                     <f:facet name="header">
                         Vardas
@@ -65,9 +66,7 @@
                 <f:facet name="header">
                     Gimimo data
                 </f:facet>
-                <h:outputText value="#{student.birthDate}">
-                    <f:convertDateTime pattern="yyyy-MM-dd"></f:convertDateTime>
-                </h:outputText>
+                <h:outputText value="#{student.birthDate}"/>
             </p:column>
 
             <p:column>

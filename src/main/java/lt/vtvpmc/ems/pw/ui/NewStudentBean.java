@@ -22,6 +22,7 @@ public class NewStudentBean {
     private LearningNotFirstTime learningNotFirstTime;
     private AdditionalInformation additionalInformation;
     private RequestForm requestForm;
+    private StudentPageBean studentPageBean;
 
     //    Additional information
     private String address;
@@ -69,31 +70,33 @@ public class NewStudentBean {
     private String guardiansAddress;
     private long guardiansPhone;
 
-
     @Transactional
-    public String save() {
+    public String save(){
+        if (studentPageBean.getfindByName(studentFirstName, studentLastName, studentBirthDate).isEmpty()){
+            AdditionalInformation additionalInformationClass = new AdditionalInformation(address, municipal, phone, email, education, nameOfFinishedSchool, yearFinishedEducation, maritalStatus);
+            entityManager.persist(additionalInformationClass);
 
-        AdditionalInformation additionalInformationClass = new AdditionalInformation(address, municipal, phone, email, education, nameOfFinishedSchool, yearFinishedEducation, maritalStatus);
-        entityManager.persist(additionalInformationClass);
+            LearningNotFirstTime learningNotFirstTimeClass = new LearningNotFirstTime(gainedSpecialty, institution, institutionType, yearFinished);
+            entityManager.persist(learningNotFirstTimeClass);
 
-        LearningNotFirstTime learningNotFirstTimeClass = new LearningNotFirstTime(gainedSpecialty, institution, institutionType, yearFinished);
-        entityManager.persist(learningNotFirstTimeClass);
-
-        RequestForm requestForm = new RequestForm();
+            RequestForm requestForm = new RequestForm();
 //        RequestForm requestForm = new RequestForm(requestDate, requestToGroup, requestTier, educationDocuments, healthDocument, photos, passportCopy, drafteeCertificate, entranceFee);
-        entityManager.persist(requestForm);
+            entityManager.persist(requestForm);
 
-        Parents parents = new Parents(dadsName, dadsSecondName, dadsAddress, dadsPhone, momsName, momsSecondName, momsAddress, momsPhone, guardiansName, guardiansSecondName, guardiansAddress, guardiansPhone);
-        entityManager.persist(parents);
+            Parents parents = new Parents(dadsName, dadsSecondName, dadsAddress, dadsPhone, momsName, momsSecondName, momsAddress, momsPhone, guardiansName, guardiansSecondName, guardiansAddress, guardiansPhone);
+            entityManager.persist(parents);
 
-        Student student = new Student(studentFirstName, studentLastName, studentBirthDate, leftStudies);
-        student.setAdditionalInformation(additionalInformationClass);
-        student.setLearningNotFirstTime(learningNotFirstTimeClass);
-        student.setRequestForm(requestForm);
-        student.setParents(parents);
-        entityManager.persist(student);
+            Student student = new Student(studentFirstName, studentLastName, studentBirthDate, leftStudies);
+            student.setAdditionalInformation(additionalInformationClass);
+            student.setLearningNotFirstTime(learningNotFirstTimeClass);
+            student.setRequestForm(requestForm);
+            student.setParents(parents);
+            entityManager.persist(student);
 
-        return "main.xhtml";
+            return "main.xhtml";
+        }else{
+            return "addNewStudent.xhtml";
+        }
     }
 
     // Entity manager get/set
@@ -426,5 +429,13 @@ public class NewStudentBean {
 
     public void setGuardiansPhone(long guardiansPhone) {
         this.guardiansPhone = guardiansPhone;
+    }
+
+    public StudentPageBean getStudentPageBean() {
+        return studentPageBean;
+    }
+
+    public void setStudentPageBean(StudentPageBean studentPageBean) {
+        this.studentPageBean = studentPageBean;
     }
 }
