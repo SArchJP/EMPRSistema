@@ -20,6 +20,7 @@ public class StudentRequiredCoursesBean {
     private StudentPageBean studentPageBean;
 
     public String createOrUpdate(Student student){
+
         entityManager.merge(student);
 
         return NAV_LIST_STUDENTS;

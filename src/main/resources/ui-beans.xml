@@ -16,6 +16,8 @@
         <property name="studentPageBean" ref="studentPageBean"/>
     </bean>
 
+    <bean id="newLearningPlanBean" class="lt.vtvpmc.ems.pw.ui.NewLearningPlanBean"/>
+
     <bean id="studentListBean" class="lt.vtvpmc.ems.pw.ui.StudentListBean" scope="request"/>
 
     <bean id="studentFindBean" class="lt.vtvpmc.ems.pw.ui.StudentFindBean" scope="request"/>
