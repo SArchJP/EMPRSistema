@@ -109,6 +109,7 @@
         <h:inputText id="basketball" value="#{newLearningPlanBean.basketball}">
         </h:inputText>
     </h:panelGrid>
+    </h:form>
     <h3>Pasirenkamieji bendrojo ugdymo branduolio dalykai:</h3>
     <h:form id="learningPlanFormOptional">
         <h:panelGrid columns="4" layout="grid">
@@ -197,6 +198,5 @@
         <h:commandButton action="#{newLearningPlanBean.save(student)}" value="Išsaugoti mokslo planą" update="growl"/>
         <h:commandButton action="main" value="Grįžti į pagrindinį" immediate="true"/>
     </h:form>
-
 </h:body>
 </html>
