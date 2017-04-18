@@ -17,12 +17,13 @@ public class StudentRequiredCoursesBean {
     private EntityManager entityManager;
 
     private StudentPageBean studentPageBean;
+
     private Student student;
     @Transactional
     public String CreateOrUpdate(Student student){
         RequiredCourses requiredCourses = new RequiredCourses();
         student.setRequiredCourses(requiredCourses);
-        entityManager.merge(student);
+
 
         return NAV_LIST_STUDENTS;
     }

@@ -8,106 +8,195 @@
 </h:head>
 
 <h:body>
-    <!--<p:growl id="growl" showDetail="true" sticky="true"/>-->
+    <p:growl id="growl" showDetail="true" sticky="true"/>
+    <h:form>
+        <h:inputText id="theSearchName" value="#{studentPageBean.firstName}" placeholder="Vardas"/>
+        <h:inputText id="theSearchLastName" value="#{studentPageBean.lastName}" placeholder="Pavardė"/>
+        <h:commandButton value="Rasti pagal varda"
+                         styleClass="add-student-button">
+            <f:ajax execute="@form" render="@form"/>
+        </h:commandButton>
+        <p:dataTable value="#{studentPageBean.findByName}" var="student">
+            <p:column>
+                <f:facet name="header">
+                    Vardas
+                </f:facet>
+                <h:outputText value="#{student.firstName}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Pavardė
+                </f:facet>
+                <h:outputText value="#{student.lastName}"/>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    Actions
+                </f:facet>
+                <h:commandLink actionListener="#{newLearningPlanBean.save(student)}"
+                               value="Išsaugoti"/>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <br/>
 
-    Puslapis tvarkomas
-    <!--<h:form>-->
-        <!--<h:inputText id="theSearchName" value="#{studentPageBean.firstName}" placeholder="Vardas"/>-->
-        <!--<h:inputText id="theSearchLastName" value="#{studentPageBean.lastName}" placeholder="Pavardė"/>-->
-        <!--<h:commandButton value="Rasti pagal varda"-->
-                         <!--styleClass="add-student-button">-->
-            <!--<f:ajax execute="@form" render="@form"/>-->
-        <!--</h:commandButton>-->
-        <!--<p:dataTable value="#{studentPageBean.findByName}" var="student">-->
-            <!--<p:column>-->
-                <!--<f:facet name="header">-->
-                    <!--Vardas-->
-                <!--</f:facet>-->
-                <!--<h:outputText value="#{student.firstName}"/>-->
-            <!--</p:column>-->
-            <!--<p:column>-->
-                <!--<f:facet name="header">-->
-                    <!--Pavardė-->
-                <!--</f:facet>-->
-                <!--<h:outputText value="#{student.lastName}"/>-->
-            <!--</p:column>-->
-            <!--<p:column>-->
-                <!--<f:facet name="header">-->
-                    <!--Actions-->
-                <!--</f:facet>-->
-                <!--<h:commandLink actionListener="#{studentRequiredCoursesBean.createOrUpdate}" value="Išsaugoti"/>-->
-            <!--</p:column>-->
-        <!--</p:dataTable>-->
-
-        <!--<h:panelGrid columns="4" layout="grid">-->
-            <!--<p:outputLabel for="religion">Tikyba:</p:outputLabel>-->
-            <!--<h:outputText value="#{student.religion}" rendered="#{item != selectedItem}"></h:outputText>-->
-            <!--<h:inputText id="religion" value="#{studentRequiredCoursesBean.religion}" rendered="#{item == selectedItem}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="ethics">Etika:</p:outputLabel>-->
-            <!--<h:inputText id="ethics" value="#{studentRequiredCoursesBean.ethics}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="lithuanian">Lietuvių kalba ir literatūra:</p:outputLabel>-->
-            <!--<h:inputText id="lithuanian" value="#{studentRequiredCoursesBean.lithuanian}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="lithuanianPlus">Lietuvių kalba ir literatūra:</p:outputLabel>-->
-            <!--<h:inputText id="lithuanianPlus" value="#{studentRequiredCoursesBean.lithuanianPlus}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="motherLanguageRussian">Rusų:</p:outputLabel>-->
-            <!--<h:inputText id="motherLanguageRussian" value="#{studentRequiredCoursesBean.motherLanguageRussian}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="motherLanguagePolish">Lenkų:</p:outputLabel>-->
-            <!--<h:inputText id="motherLanguagePolish" value="#{studentRequiredCoursesBean.motherLanguagePolish}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="foreignEnglish">Anglų:</p:outputLabel>-->
-            <!--<h:inputText id="foreignEnglish" value="#{studentRequiredCoursesBean.foreignEnglish}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="foreignGerman">Vokiečių:</p:outputLabel>-->
-            <!--<h:inputText id="foreignGerman" value="#{studentRequiredCoursesBean.foreignGerman}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="foreignFrench">Prancūzų:</p:outputLabel>-->
-            <!--<h:inputText id="foreignFrench" value="#{studentRequiredCoursesBean.foreignFrench}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="foreignRussian">Rusų:</p:outputLabel>-->
-            <!--<h:inputText id="foreignRussian" value="#{studentRequiredCoursesBean.foreignRussian}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="history">Istorija:</p:outputLabel>-->
-            <!--<h:inputText id="history" value="#{studentRequiredCoursesBean.history}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="geography">Geografija:</p:outputLabel>-->
-            <!--<h:inputText id="geography" value="#{studentRequiredCoursesBean.geography}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="integratedHistoryGeography">Integruotas soc. mokslų kursas:</p:outputLabel>-->
-            <!--<h:inputText id="integratedHistoryGeography" value="#{studentRequiredCoursesBean.integratedHistoryGeography}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="mathematics">Matematika:</p:outputLabel>-->
-            <!--<h:inputText id="mathematics" value="#{studentRequiredCoursesBean.mathematics}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="biology">Biologija:</p:outputLabel>-->
-            <!--<h:inputText id="biology" value="#{studentRequiredCoursesBean.biology}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="physics">Fizika:</p:outputLabel>-->
-            <!--<h:inputText id="physics" value="#{studentRequiredCoursesBean.physics}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="chemistry">Chemija:</p:outputLabel>-->
-            <!--<h:inputText id="chemistry" value="#{studentRequiredCoursesBean.chemistry}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="integratedNaturalSciencesCourse">Integruotas gamtos mokslų kursas:</p:outputLabel>-->
-            <!--<h:inputText id="integratedNaturalSciencesCourse" value="#{studentRequiredCoursesBean.integratedNaturalSciencesCourse}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="generalPhysicalEducation">Bendroji kūno kultūra:</p:outputLabel>-->
-            <!--<h:inputText id="generalPhysicalEducation" value="#{studentRequiredCoursesBean.generalPhysicalEducation}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="football">Futbolas:</p:outputLabel>-->
-            <!--<h:inputText id="football" value="#{studentRequiredCoursesBean.football}">-->
-            <!--</h:inputText>-->
-            <!--<p:outputLabel for="basketball">Krepšinis:</p:outputLabel>-->
-            <!--<h:inputText id="basketball" value="#{studentRequiredCoursesBean.basketball}">-->
-            <!--</h:inputText>-->
-        <!--</h:panelGrid>-->
-        <!--<h:commandButton action="#{studentRequiredCoursesBean.createOrUpdate}" value="Išsaugoti mokslo planą" update="growl"/>-->
-        <!--<h:commandButton action="main" value="Grįžti į pagrindinį" immediate="true"/>-->
-    <!--</h:form>-->
+    <h3>Privalomieji bendrojo ugdymo branduolio dalykai:</h3>
+    <h:form id="learningPlanForm">
+    <h:panelGrid columns="4" layout="grid">
+        <p:outputLabel for="religion">Tikyba:</p:outputLabel>
+        <h:inputText id="religion" value="#{newLearningPlanBean.religion}">
+        </h:inputText>
+        <p:outputLabel for="ethics">Etika:</p:outputLabel>
+        <h:inputText id="ethics" value="#{newLearningPlanBean.ethics}">
+        </h:inputText>
+        <p:outputLabel for="lithuanian">Lietuvių kalba ir literatūra:</p:outputLabel>
+        <h:inputText id="lithuanian" value="#{newLearningPlanBean.lithuanian}">
+        </h:inputText>
+        <p:outputLabel for="lithuanianPlus">Lietuvių kalba ir literatūra:</p:outputLabel>
+        <h:inputText id="lithuanianPlus" value="#{newLearningPlanBean.lithuanianPlus}">
+        </h:inputText>
+        <p:outputLabel for="motherLanguageRussian">Rusų:</p:outputLabel>
+        <h:inputText id="motherLanguageRussian" value="#{newLearningPlanBean.motherLanguageRussian}">
+        </h:inputText>
+        <p:outputLabel for="motherLanguagePolish">Lenkų:</p:outputLabel>
+        <h:inputText id="motherLanguagePolish" value="#{newLearningPlanBean.motherLanguagePolish}">
+        </h:inputText>
+        <p:outputLabel for="foreignEnglish">Anglų:</p:outputLabel>
+        <h:inputText id="foreignEnglish" value="#{newLearningPlanBean.foreignEnglish}">
+        </h:inputText>
+        <p:outputLabel for="foreignGerman">Vokiečių:</p:outputLabel>
+        <h:inputText id="foreignGerman" value="#{newLearningPlanBean.foreignGerman}">
+        </h:inputText>
+        <p:outputLabel for="foreignFrench">Prancūzų:</p:outputLabel>
+        <h:inputText id="foreignFrench" value="#{newLearningPlanBean.foreignFrench}">
+        </h:inputText>
+        <p:outputLabel for="foreignRussian">Rusų:</p:outputLabel>
+        <h:inputText id="foreignRussian" value="#{newLearningPlanBean.foreignRussian}">
+        </h:inputText>
+        <p:outputLabel for="history">Istorija:</p:outputLabel>
+        <h:inputText id="history" value="#{newLearningPlanBean.history}">
+        </h:inputText>
+        <p:outputLabel for="geography">Geografija:</p:outputLabel>
+        <h:inputText id="geography" value="#{newLearningPlanBean.geography}">
+        </h:inputText>
+        <p:outputLabel for="integratedHistoryGeography">Integruotas soc. mokslų kursas:</p:outputLabel>
+        <h:inputText id="integratedHistoryGeography" value="#{newLearningPlanBean.integratedHistoryGeography}">
+        </h:inputText>
+        <p:outputLabel for="mathematics">Matematika:</p:outputLabel>
+        <h:inputText id="mathematics" value="#{newLearningPlanBean.mathematics}">
+        </h:inputText>
+        <p:outputLabel for="biology">Biologija:</p:outputLabel>
+        <h:inputText id="biology" value="#{newLearningPlanBean.biology}">
+        </h:inputText>
+        <p:outputLabel for="physics">Fizika:</p:outputLabel>
+        <h:inputText id="physics" value="#{newLearningPlanBean.physics}">
+        </h:inputText>
+        <p:outputLabel for="chemistry">Chemija:</p:outputLabel>
+        <h:inputText id="chemistry" value="#{newLearningPlanBean.chemistry}">
+        </h:inputText>
+        <p:outputLabel for="integratedNaturalSciencesCourse">Integruotas gamtos mokslų kursas:</p:outputLabel>
+        <h:inputText id="integratedNaturalSciencesCourse"
+                     value="#{newLearningPlanBean.integratedNaturalSciencesCourse}">
+        </h:inputText>
+        <p:outputLabel for="generalPhysicalEducation">Bendroji kūno kultūra:</p:outputLabel>
+        <h:inputText id="generalPhysicalEducation" value="#{newLearningPlanBean.generalPhysicalEducation}">
+        </h:inputText>
+        <p:outputLabel for="football">Futbolas:</p:outputLabel>
+        <h:inputText id="football" value="#{newLearningPlanBean.football}">
+        </h:inputText>
+        <p:outputLabel for="basketball">Krepšinis:</p:outputLabel>
+        <h:inputText id="basketball" value="#{newLearningPlanBean.basketball}">
+        </h:inputText>
+    </h:panelGrid>
+    </h:form>
+    <h3>Pasirenkamieji bendrojo ugdymo branduolio dalykai:</h3>
+    <h:form id="learningPlanFormOptional">
+        <h:panelGrid columns="4" layout="grid">
+            <p:outputLabel for="optionalEnglish">Anglų kalba II:</p:outputLabel>
+            <h:inputText id="optionalEnglish" value="#{newLearningPlanBean.optionalEnglish}">
+            </h:inputText>
+            <p:outputLabel for="optionalGerman">Vokiečių kalba II:</p:outputLabel>
+            <h:inputText id="optionalGerman" value="#{newLearningPlanBean.optionalGerman}">
+            </h:inputText>
+            <p:outputLabel for="optionalRussian">Rusų kalba:</p:outputLabel>
+            <h:inputText id="optionalRussian" value="#{newLearningPlanBean.optionalRussian}">
+            </h:inputText>
+            <p:outputLabel for="design">Dizainas:</p:outputLabel>
+            <h:inputText id="design" value="#{newLearningPlanBean.design}">
+            </h:inputText>
+            <p:outputLabel for="art">Dizainas:</p:outputLabel>
+            <h:inputText id="art" value="#{newLearningPlanBean.art}">
+            </h:inputText>
+            <p:outputLabel for="theater">Teatras:</p:outputLabel>
+            <h:inputText id="theater" value="#{newLearningPlanBean.theater}">
+            </h:inputText>
+            <p:outputLabel for="music">Muzika:</p:outputLabel>
+            <h:inputText id="music" value="#{newLearningPlanBean.music}">
+            </h:inputText>
+            <p:outputLabel for="it">IT:</p:outputLabel>
+            <h:inputText id="it" value="#{newLearningPlanBean.it}">
+            </h:inputText>
+            <p:outputLabel for="extendedLithuanian">Lietuvių gimtoji kalba (išpl.):</p:outputLabel>
+            <h:inputText id="extendedLithuanian" value="#{newLearningPlanBean.extendedLithuanian}">
+            </h:inputText>
+            <p:outputLabel for="extendedLithuanianPlus">Lietuvių valstybinė kalba (išpl.):</p:outputLabel>
+            <h:inputText id="extendedLithuanianPlus" value="#{newLearningPlanBean.extendedLithuanianPlus}">
+            </h:inputText>
+            <p:outputLabel for="extendedForeignLanguage">Užsienio kalba (išpl.):</p:outputLabel>
+            <h:inputText id="extendedForeignLanguage" value="#{newLearningPlanBean.extendedForeignLanguage}">
+            </h:inputText>
+            <p:outputLabel for="extendedHistory">Istorija (išpl.):</p:outputLabel>
+            <h:inputText id="extendedHistory" value="#{newLearningPlanBean.extendedHistory}">
+            </h:inputText>
+            <p:outputLabel for="extendedMathematics">Matematika (išpl.):</p:outputLabel>
+            <h:inputText id="extendedMathematics" value="#{newLearningPlanBean.extendedMathematics}">
+            </h:inputText>
+            <p:outputLabel for="extendedBiology">Biologija (išpl.):</p:outputLabel>
+            <h:inputText id="extendedBiology" value="#{newLearningPlanBean.extendedBiology}">
+            </h:inputText>
+            <p:outputLabel for="extendedPhysics">Fizika (išpl.):</p:outputLabel>
+            <h:inputText id="extendedPhysics" value="#{newLearningPlanBean.extendedPhysics}">
+            </h:inputText>
+            <p:outputLabel for="extendedChemistry">Chemija (išpl.):</p:outputLabel>
+            <h:inputText id="extendedChemistry" value="#{newLearningPlanBean.extendedChemistry}">
+            </h:inputText>
+            <p:outputLabel for="biologyModuleOne">Biologijos modulis I:</p:outputLabel>
+            <h:inputText id="biologyModuleOne" value="#{newLearningPlanBean.biologyModuleOne}">
+            </h:inputText>
+            <p:outputLabel for="chemistryModule">Chemijos modulis:</p:outputLabel>
+            <h:inputText id="chemistryModule" value="#{newLearningPlanBean.chemistryModule}">
+            </h:inputText>
+            <p:outputLabel for="biologyModuleTwo">Biologijos modulis II:</p:outputLabel>
+            <h:inputText id="biologyModuleTwo" value="#{newLearningPlanBean.biologyModuleTwo}">
+            </h:inputText>
+            <p:outputLabel for="phisicsModuleOne">Fizikos modulis I:</p:outputLabel>
+            <h:inputText id="phisicsModuleOne" value="#{newLearningPlanBean.football}">
+            </h:inputText>
+            <p:outputLabel for="phisicsModuleTwo">Fizikos modulis II:</p:outputLabel>
+            <h:inputText id="phisicsModuleTwo" value="#{newLearningPlanBean.phisicsModuleTwo}">
+            </h:inputText>
+            <p:outputLabel for="phisicsModuleThree">Fizikos modulis III:</p:outputLabel>
+            <h:inputText id="phisicsModuleThree" value="#{newLearningPlanBean.phisicsModuleThree}">
+            </h:inputText>
+            <p:outputLabel for="mathematicsModuleOne">Matematikos modulis I:</p:outputLabel>
+            <h:inputText id="mathematicsModuleOne" value="#{newLearningPlanBean.mathematicsModuleOne}">
+            </h:inputText>
+            <p:outputLabel for="mathematicsModuleTwo">Matematikos modulis II:</p:outputLabel>
+            <h:inputText id="mathematicsModuleTwo" value="#{newLearningPlanBean.mathematicsModuleTwo}">
+            </h:inputText>
+            <p:outputLabel for="mathematicsModuleThree">Matematikos modulis III:</p:outputLabel>
+            <h:inputText id="mathematicsModuleThree" value="#{newLearningPlanBean.mathematicsModuleThree}">
+            </h:inputText>
+            <p:outputLabel for="activities">Būreliai:</p:outputLabel>
+            <h:inputText id="activities" value="#{newLearningPlanBean.activities}">
+            </h:inputText>
+            <p:outputLabel for="wishes">Pageidavimai:</p:outputLabel>
+            <h:inputText id="wishes" value="#{newLearningPlanBean.wishes}">
+            </h:inputText>
+        </h:panelGrid>
+        <h:commandButton action="#{newLearningPlanBean.save(student)}" value="Išsaugoti mokslo planą" update="growl"/>
+        <h:commandButton action="main" value="Grįžti į pagrindinį" immediate="true"/>
+    </h:form>
 
 </h:body>
 </html>
