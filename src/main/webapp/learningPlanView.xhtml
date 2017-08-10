@@ -9,7 +9,6 @@
 
 <h:body>
     <p:growl id="growl" showDetail="true" sticky="true"/>
-
     <h:form>
         <h:inputText id="theSearchName" value="#{studentPageBean.firstName}" placeholder="Vardas"/>
         <h:inputText id="theSearchLastName" value="#{studentPageBean.lastName}" placeholder="Pavardė"/>
@@ -34,7 +33,7 @@
                 <f:facet name="header">
                     Actions
                 </f:facet>
-                <h:commandLink actionListener="#{studentRequiredCoursesBean.createOrUpdate(student)}"
+                <h:commandLink actionListener="#{newLearningPlanBean.save(student)}"
                                value="Išsaugoti"/>
             </p:column>
         </p:dataTable>
@@ -198,5 +197,6 @@
         <h:commandButton action="#{newLearningPlanBean.save(student)}" value="Išsaugoti mokslo planą" update="growl"/>
         <h:commandButton action="main" value="Grįžti į pagrindinį" immediate="true"/>
     </h:form>
+
 </h:body>
 </html>

@@ -4,11 +4,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import lt.vtvpmc.ems.pw.entities.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 
 public class NewStudentBean {
+
+    static final Logger Log = LoggerFactory.getLogger(NewStudentBean.class);
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -72,7 +76,8 @@ public class NewStudentBean {
 
     @Transactional
     public String save(){
-        if (studentPageBean.getfindByName(studentFirstName, studentLastName, studentBirthDate).equals(null)){
+        Log.info("Checking if student exists");
+        if (studentPageBean.getfindByName(studentFirstName, studentLastName, studentBirthDate).isEmpty()){
             AdditionalInformation additionalInformationClass = new AdditionalInformation(address, municipal, phone, email, education, nameOfFinishedSchool, yearFinishedEducation, maritalStatus);
             entityManager.persist(additionalInformationClass);
 
@@ -91,10 +96,12 @@ public class NewStudentBean {
             student.setLearningNotFirstTime(learningNotFirstTimeClass);
             student.setRequestForm(requestForm);
             student.setParents(parents);
+            Log.debug("Creating new student", student);
             entityManager.persist(student);
 
             return "main.xhtml";
         }else{
+            Log.debug("Student with that name, lastname and birthdate already exists");
             return "addNewStudent.xhtml";
         }
     }
